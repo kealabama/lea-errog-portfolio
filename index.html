@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Léa Errog — Marketing Lead, Deeptech & MedTech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #F3EDE2;
+      --cream-mid: #EDE5D7;
+      --ink: #1A1613;
+      --copper: #B5562C;
+      --sage: #5F7A65;
+      --mist: #E6DFD2;
+      --warm-grey: #948C82;
+    }
+    *, *::before, *::after { box-sizing:border-box;margin:0;padding:0; }
+    html { scroll-behavior:smooth; }
+    body { background-color:var(--cream);color:var(--ink);font-family:'Outfit',sans-serif;font-weight:300;overflow-x:hidden;cursor:none; }
+    body::before { content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.6; }
+
+    /* CURSOR */
+    #cursor-dot { width:6px;height:6px;background:var(--ink);border-radius:50%;position:fixed;pointer-events:none;z-index:10000;transform:translate(-50%,-50%); }
+    #cursor-ring { width:30px;height:30px;border:1px solid var(--copper);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .25s,height .25s; }
+    .cursor-grow { width:52px!important;height:52px!important; }
+
+    /* NAV */
+    nav { position:fixed;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:28px 52px;z-index:100;transition:background .4s,box-shadow .4s,transform .4s cubic-bezier(.16,1,.3,1); }
+    nav.scrolled { background:rgba(243,237,226,.94);backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(26,22,19,.08); }
+    nav.nav-hidden { transform:translateY(-100%); }
+    .nav-logo { font-family:'Cormorant',serif;font-weight:400;font-size:1.05rem;letter-spacing:.04em;color:var(--ink);text-decoration:none; }
+    .nav-links { display:flex;gap:40px;list-style:none; }
+    .nav-links a { font-size:.71rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);text-decoration:none;position:relative;padding-bottom:2px; }
+    .nav-links a::after { content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--copper);transition:width .3s; }
+    .nav-links a:hover::after { width:100%; }
+
+    /* HERO */
+    #hero { min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 52px 72px;position:relative;overflow:hidden; }
+    .hero-eyebrow { font-size:.69rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--copper);margin-bottom:32px;display:flex;align-items:center;gap:14px; }
+    .hero-eyebrow-line { display:inline-block;width:32px;height:1px;background:var(--copper); }
+    .hero-headline { font-family:'Cormorant',serif;font-weight:300;font-size:clamp(3.6rem,7.5vw,7rem);line-height:1.04;letter-spacing:-.015em;color:var(--ink);max-width:960px;margin-bottom:48px;overflow:hidden; }
+    .hero-headline-inner { display:block;transform:translateY(105%);animation:slideUp 1.15s cubic-bezier(.16,1,.3,1) .15s forwards; }
+    @keyframes slideUp { to{transform:translateY(0)} }
+    .hero-headline em { font-style:italic;color:var(--copper); }
+    .hero-headline-ghost { position:absolute;top:140px;right:52px;font-family:'Cormorant',serif;font-style:italic;font-weight:300;font-size:clamp(4rem,9vw,8.5rem);line-height:1;color:transparent;-webkit-text-stroke:1px rgba(26,22,19,.055);pointer-events:none;user-select:none;animation:fadeIn 1.8s ease .6s both; }
+    @keyframes fadeIn { from{opacity:0}to{opacity:1} }
+    .hero-bottom { display:flex;justify-content:space-between;align-items:flex-end;gap:40px; }
+    .hero-bio { max-width:560px; }
+    .hero-bio p { font-size:1rem;font-weight:300;line-height:1.8;color:var(--ink);opacity:.72;border-left:1px solid var(--copper);padding-left:20px;animation:fadeIn 1s ease .8s both; }
+    .hero-meta { text-align:right;animation:fadeIn 1s ease 1s both; }
+    .hero-meta-role { font-size:.82rem;font-weight:400;color:var(--ink);margin-bottom:10px; }
+    .hero-meta-item { font-size:.7rem;font-weight:300;letter-spacing:.1em;color:var(--warm-grey);margin-bottom:5px; }
+    .hero-meta-item strong { color:var(--ink);font-weight:400; }
+    .scroll-hint { display:flex;align-items:center;gap:12px;margin-top:44px;font-size:.67rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--warm-grey);animation:fadeIn 1s ease 1.2s both; }
+    .scroll-line { width:48px;height:1px;background:var(--warm-grey);overflow:hidden;position:relative; }
+    .scroll-line::after { content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:var(--copper);animation:lineSlide 2s ease-in-out infinite; }
+    @keyframes lineSlide { 0%{left:-100%}50%{left:0%}100%{left:100%} }
+
+    /* MARQUEE */
+    .marquee-strip { background:var(--ink);padding:14px 0;overflow:hidden;display:flex; }
+    .marquee-track { display:flex;animation:marquee 30s linear infinite;white-space:nowrap; }
+    .marquee-item { font-family:'Cormorant',serif;font-style:italic;font-size:1rem;font-weight:300;letter-spacing:.02em;padding:0 30px;color:var(--cream); }
+    .marquee-dot { color:var(--copper);font-style:normal; }
+    @keyframes marquee { from{transform:translateX(0)}to{transform:translateX(-50%)} }
+
+    /* ABOUT */
+    #about { padding:88px 52px;display:grid;grid-template-columns:240px 1fr 1fr;gap:60px;align-items:start;border-bottom:1px solid rgba(26,22,19,.1); }
+    .section-eyebrow { display:flex;align-items:center;gap:14px; }
+    .section-number { font-size:.66rem;font-weight:400;letter-spacing:.18em;color:var(--copper); }
+    .section-rule { width:40px;height:1px;background:var(--copper);opacity:.5; }
+    .section-label { font-size:.66rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--warm-grey); }
+    .about-text { font-size:.95rem;font-weight:300;line-height:1.82;color:var(--ink);opacity:.78; }
+    .about-superpowers { display:flex;flex-direction:column; }
+    .superpower-item { padding:18px 0;border-bottom:1px solid rgba(26,22,19,.1);display:flex;align-items:flex-start;gap:16px; }
+    .superpower-icon { width:6px;height:6px;border-radius:50%;background:var(--copper);margin-top:7px;flex-shrink:0; }
+    .superpower-name { font-family:'Cormorant',serif;font-size:1.1rem;font-weight:400;color:var(--ink);display:block;margin-bottom:2px; }
+    .superpower-desc { font-size:.78rem;font-weight:300;color:var(--warm-grey);line-height:1.55; }
+
+    /* WORK INTRO */
+    #work-intro { padding:100px 52px 0;display:grid;grid-template-columns:1fr 1.6fr;gap:80px;align-items:end; }
+    .work-heading { font-family:'Cormorant',serif;font-size:clamp(2.4rem,4vw,3.4rem);font-weight:400;line-height:1.15;color:var(--ink); }
+    .work-heading em { font-style:italic;color:var(--copper); }
+    .work-subtext { font-size:.95rem;font-weight:300;line-height:1.8;color:var(--ink);opacity:.68; }
+
+    /* ── PROJECT LIST — open editorial, no tile backgrounds ── */
+    #projects { padding:0 52px 120px; }
+
+    .project-entry {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid rgba(26,22,19,.12);
+      padding: 80px 0;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+    }
+    .projects-end-rule { border-top:1px solid rgba(26,22,19,.12); }
+
+    /* Alternate flip */
+    .project-entry:nth-child(even) .pv-col { order:2; padding-left:64px; padding-right:0; }
+    .project-entry:nth-child(even) .pt-col { order:1; padding-right:64px; padding-left:0; }
+
+    /* Hover: title gets underline */
+    .proj-title-text { position:relative;display:inline; }
+    .proj-title-text::after { content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--ink);transition:width .5s cubic-bezier(.16,1,.3,1); }
+    .project-entry:hover .proj-title-text::after { width:100%; }
+
+    /* Visual column */
+    .pv-col { display:flex;align-items:center;justify-content:center;padding-right:64px; }
+    .project-frame { width:100%;aspect-ratio:4/3;position:relative;overflow:hidden; }
+
+    /* ── Pipeline chart art ── */
+    .vf-pipeline { background:var(--cream-mid);width:100%;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:36px 32px;position:relative; }
+    .vf-label { font-size:.58rem;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:var(--warm-grey);margin-bottom:24px;max-width:200px;line-height:1.5; }
+    .vf-joined { position:absolute;top:28px;right:28px;font-family:'Cormorant',serif;font-style:italic;font-size:.82rem;color:var(--warm-grey);text-align:right;border-right:1px solid var(--copper);padding-right:10px;line-height:1.5; }
+    .vf-bars { display:flex;align-items:flex-end;gap:12px;height:130px; }
+    .vf-col { display:flex;flex-direction:column;align-items:center;gap:6px;flex:1; }
+    .vf-bar-wrap { width:100%;height:110px;display:flex;align-items:flex-end; }
+    .vf-bar { width:100%;border-radius:1px 1px 0 0; }
+    .vf-b22 { height:15%;background:rgba(181,86,44,.18); }
+    .vf-b23 { height:57%;background:rgba(181,86,44,.45); }
+    .vf-b24 { height:100%;background:var(--copper); }
+    .vf-val { font-family:'Cormorant',serif;font-size:.78rem;font-weight:400;color:var(--copper);text-align:center;line-height:1.2; }
+    .vf-yr { font-size:.58rem;font-weight:400;letter-spacing:.06em;color:var(--warm-grey);text-align:center; }
+
+    /* ── Brand art ── */
+    .vf-brand { background:var(--cream);width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;padding:36px 32px;border:1px solid rgba(26,22,19,.08);position:relative; }
+    .vfb-ghost { position:absolute;top:16px;right:20px;font-family:'Cormorant',serif;font-weight:300;font-size:3.5rem;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(26,22,19,.06); }
+    .vfb-wm { font-family:'Cormorant',serif;font-weight:300;font-size:2.6rem;letter-spacing:-.02em;color:rgba(26,22,19,.14);display:block;border-bottom:1px solid rgba(181,86,44,.2);padding-bottom:14px;margin-bottom:14px; }
+    .vfb-sub { font-family:'Cormorant',serif;font-style:italic;font-size:.85rem;color:rgba(181,86,44,.5);display:block;margin-bottom:24px; }
+    .vfb-bars { display:flex;flex-direction:column;gap:8px; }
+    .vfb-bar { height:5px;border-radius:2px; }
+    .vfb-bar:nth-child(1){width:80%;background:rgba(181,86,44,.18);}
+    .vfb-bar:nth-child(2){width:55%;background:rgba(95,122,101,.18);}
+    .vfb-bar:nth-child(3){width:70%;background:rgba(148,140,130,.14);}
+    .vfb-palette { display:flex;gap:7px;margin-top:20px; }
+    .vfb-sw { width:24px;height:24px;border-radius:50%; }
+
+    /* ── Launch art ── */
+    .vf-launch { background:var(--cream-mid);width:100%;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:36px 32px;position:relative;overflow:hidden; }
+    .vfl-ghost { position:absolute;top:16px;right:20px;font-family:'Cormorant',serif;font-weight:300;font-size:3.5rem;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(26,22,19,.06); }
+    .vfl-label { font-size:.58rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--warm-grey);margin-bottom:24px;max-width:200px;line-height:1.5; }
+    .vfl-title { font-family:'Cormorant',serif;font-weight:300;font-size:1.6rem;color:rgba(26,22,19,.55);line-height:1.25;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid rgba(181,86,44,.2); }
+    .vfl-grid { display:grid;grid-template-columns:1fr 1fr;gap:8px; }
+    .vfl-block { padding:12px;border:1px solid rgba(26,22,19,.08); }
+    .vfl-val { font-family:'Cormorant',serif;font-size:1.5rem;color:var(--copper);font-weight:300; }
+    .vfl-lbl { font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--warm-grey);margin-top:3px; }
+
+    /* ── Content/SEO art ── */
+    .vf-content { background:var(--cream-mid);width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;padding:36px 32px;gap:12px;border:1px solid rgba(26,22,19,.08);position:relative; }
+    .vfc-ghost { position:absolute;top:16px;right:20px;font-family:'Cormorant',serif;font-weight:300;font-size:3.5rem;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(26,22,19,.06); }
+    .vfc-row { display:flex;align-items:center;gap:10px; }
+    .vfc-tag { font-size:.56rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase;padding:3px 9px;border:1px solid rgba(181,86,44,.3);color:var(--copper);flex-shrink:0;width:60px;text-align:center; }
+    .vfc-track { flex:1;height:1px;background:rgba(26,22,19,.1);position:relative; }
+    .vfc-track::after { content:'';position:absolute;left:0;top:0;height:100%;background:var(--copper);opacity:.5; }
+    .vfc-t88::after{width:88%} .vfc-t70::after{width:70%} .vfc-t55::after{width:55%} .vfc-t80::after{width:80%}
+    .vfc-val { font-family:'Cormorant',serif;font-size:.88rem;color:var(--warm-grey);flex-shrink:0; }
+    .vfc-quote { margin-top:14px;padding-top:14px;border-top:1px solid rgba(26,22,19,.07);font-family:'Cormorant',serif;font-style:italic;font-size:.92rem;font-weight:300;line-height:1.5;color:var(--ink);opacity:.3; }
+
+    /* Text column */
+    .pt-col { padding-left:64px;display:flex;flex-direction:column;justify-content:center; }
+    .proj-meta { display:flex;align-items:center;gap:12px;margin-bottom:18px; }
+    .proj-cat { font-size:.67rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--copper); }
+    .proj-dot { width:3px;height:3px;border-radius:50%;background:var(--warm-grey); }
+    .proj-year { font-size:.67rem;font-weight:300;letter-spacing:.1em;color:var(--warm-grey); }
+    h3.proj-title { font-family:'Cormorant',serif;font-size:clamp(1.7rem,2.6vw,2.3rem);font-weight:400;line-height:1.15;color:var(--ink);margin-bottom:22px;padding-bottom:18px;border-bottom:1px solid rgba(181,86,44,.2); }
+    .proj-desc { font-size:.9rem;font-weight:300;line-height:1.8;color:var(--ink);opacity:.7;border-left:2px solid rgba(181,86,44,.25);padding-left:16px;margin-bottom:28px; }
+
+    /* Impact block */
+    .proj-impact { display:flex;border:1px solid rgba(26,22,19,.1);margin-bottom:24px; }
+    .pil-col { padding:14px 12px;border-right:1px solid rgba(26,22,19,.1);display:flex;align-items:center; }
+    .pil-text { font-size:.56rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--warm-grey);writing-mode:vertical-rl;text-orientation:mixed;transform:rotate(180deg); }
+    .pim { padding:14px 18px;flex:1;display:flex;flex-direction:column;gap:7px; }
+    .pim-row { display:flex;align-items:baseline;gap:9px;font-size:.84rem;font-weight:300;color:var(--ink); }
+    .pim-val { font-family:'Cormorant',serif;font-size:1.4rem;font-weight:400;color:var(--copper);line-height:1; }
+    .pim-dot { width:3px;height:3px;border-radius:50%;background:var(--warm-grey);opacity:.5;flex-shrink:0; }
+
+    .proj-bottom { display:flex;align-items:center;justify-content:space-between; }
+    .proj-tags { display:flex;flex-wrap:wrap;gap:7px; }
+    .proj-tag { font-size:.59rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--warm-grey);border:1px solid rgba(148,140,130,.3);padding:4px 9px; }
+    .proj-cta { display:inline-flex;align-items:center;gap:10px;font-size:.68rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);transition:color .25s,gap .3s;flex-shrink:0; }
+    .project-entry:hover .proj-cta { color:var(--copper);gap:18px; }
+    .cta-arr { display:inline-block;width:24px;height:1px;background:currentColor;position:relative; }
+    .cta-arr::after { content:'';position:absolute;right:0;top:-3px;border-top:3px solid transparent;border-bottom:3px solid transparent;border-left:5px solid currentColor; }
+
+    /* CONTACT */
+    #contact { padding:120px 52px;position:relative;overflow:hidden;background:var(--ink); }
+    .contact-bg-text { position:absolute;right:-60px;bottom:-40px;font-family:'Cormorant',serif;font-style:italic;font-weight:300;font-size:clamp(8rem,18vw,16rem);line-height:1;color:transparent;-webkit-text-stroke:1px rgba(243,237,226,.04);pointer-events:none;user-select:none; }
+    .contact-inner { max-width:640px; }
+    .c-eyebrow { display:flex;align-items:center;gap:14px; }
+    .c-num { font-size:.66rem;font-weight:400;letter-spacing:.18em;color:var(--copper); }
+    .c-rule { width:40px;height:1px;background:var(--copper);opacity:.5; }
+    .c-lbl { font-size:.66rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:rgba(243,237,226,.4); }
+    .contact-heading { font-family:'Cormorant',serif;font-weight:300;font-size:clamp(2.6rem,5vw,4.8rem);line-height:1.1;color:var(--cream);margin:40px 0 52px; }
+    .contact-heading em { font-style:italic;color:var(--copper); }
+    .contact-links { display:flex;gap:32px;flex-wrap:wrap; }
+    .contact-link { display:inline-flex;align-items:center;gap:14px;font-size:.75rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--cream);text-decoration:none;transition:color .25s; }
+    .contact-link:hover { color:var(--copper); }
+    .cl-icon { width:42px;height:42px;border:1px solid rgba(243,237,226,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .25s,border-color .25s; }
+    .contact-link:hover .cl-icon { background:var(--copper);border-color:var(--copper); }
+    .cl-icon svg { width:16px;height:16px;fill:currentColor; }
+
+    footer { border-top:1px solid rgba(26,22,19,.1);padding:28px 52px;display:flex;justify-content:space-between;align-items:center;background:var(--cream); }
+    .footer-copy { font-size:.68rem;font-weight:300;letter-spacing:.06em;color:var(--warm-grey); }
+    .footer-links { display:flex;gap:28px; }
+    .footer-links a { font-size:.68rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--warm-grey);text-decoration:none;transition:color .2s; }
+    .footer-links a:hover { color:var(--copper); }
+
+    .reveal { opacity:0;transform:translateY(22px);transition:opacity .7s,transform .7s; }
+    .reveal.visible { opacity:1;transform:translateY(0); }
+    .reveal-delay-1 { transition-delay:.12s; }
+    .reveal-delay-2 { transition-delay:.24s; }
+
+    @media (max-width:960px) {
+      nav{padding:22px 24px;} .nav-links{gap:20px;}
+      #hero{padding:0 24px 56px;} .hero-headline-ghost{display:none;} .hero-bottom{flex-direction:column;align-items:flex-start;}
+      #about{grid-template-columns:1fr;gap:32px;padding:64px 24px;}
+      #work-intro{grid-template-columns:1fr;gap:24px;padding:72px 24px 0;}
+      #projects{padding:0 24px 80px;}
+      .project-entry{grid-template-columns:1fr;gap:36px;padding:52px 0;}
+      .pv-col,.project-entry:nth-child(even) .pv-col{padding:0;order:0!important;}
+      .pt-col,.project-entry:nth-child(even) .pt-col{padding:0;order:0!important;}
+      .project-frame{aspect-ratio:16/9;}
+      #contact{padding:80px 24px;}
+      footer{flex-direction:column;gap:16px;padding:24px;}
+    }
+  </style>
+</head>
+<body>
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">Léa Errog</a>
+    <ul class="nav-links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#projects">Work</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-eyebrow">
+      <span class="hero-eyebrow-line"></span>
+      Marketing Lead · Deeptech &amp; MedTech · Zürich
+    </div>
+    <h1 class="hero-headline">
+      <span class="hero-headline-inner">
+        Deep tech deserves<br>
+        marketing that makes<br>
+        people <em>act.</em>
+      </span>
+    </h1>
+    <div class="hero-bottom">
+      <div class="hero-bio">
+        <p>I'm <span style="color:var(--copper);font-weight:400;">Léa Errog</span> — I turn complex AI and MedTech products into stories so clear and compelling that people immediately understand them, want them, and convert. My superpowers are data and simplicity. My tools are neuromarketing, SEO, and AI-native content strategy.</p>
+        <a href="index.html#projects" class="scroll-hint" style="text-decoration:none;"><div class="scroll-line"></div>Selected work</a>
+      </div>
+      <div class="hero-meta">
+        <p class="hero-meta-role">Marketing Lead</p>
+        <p class="hero-meta-item">Currently · <strong>RetinAI → EssilorLuxottica</strong></p>
+        <p class="hero-meta-item">Based · <strong>Zürich, Switzerland</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-strip" aria-hidden="true">
+    <div class="marquee-track">
+      <span class="marquee-item">Simplicity as a superpower <span class="marquee-dot">◆</span></span>
+      <span class="marquee-item">Data-driven creative <span class="marquee-dot">◆</span></span>
+      <span class="marquee-item">Neuromarketing principles <span class="marquee-dot">◆</span></span>
+      <span class="marquee-item">SEO · AEO · GEO <span class="marquee-dot">◆</span></span>
+      <span class="marquee-item">Go-to-market strategy <span class="marquee-dot">◆</span></span>
+      <span class="marquee-item">AI-native content <span class="marquee-dot">◆</span></span>
+      <span class="marquee-item">ROI-obsessed <span class="marquee-dot">◆</span></span>
+      <span class="marquee-item">MedTech · AI · Deeptech <span class="marquee-dot">◆</span></span>
+      <span class="marquee-item">Simplicity as a superpower <span class="marquee-dot">◆</span></span>
+      <span class="marquee-item">Data-driven creative <span class="marquee-dot">◆</span></span>
+      <span class="marquee-item">Neuromarketing principles <span class="marquee-dot">◆</span></span>
+      <span class="marquee-item">SEO · AEO · GEO <span class="marquee-dot">◆</span></span>
+      <span class="marquee-item">Go-to-market strategy <span class="marquee-dot">◆</span></span>
+      <span class="marquee-item">AI-native content <span class="marquee-dot">◆</span></span>
+      <span class="marquee-item">ROI-obsessed <span class="marquee-dot">◆</span></span>
+      <span class="marquee-item">MedTech · AI · Deeptech <span class="marquee-dot">◆</span></span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div style="padding-top:4px;">
+      <div class="section-eyebrow reveal">
+        <span class="section-number">01</span>
+        <div class="section-rule"></div>
+        <span class="section-label">Approach</span>
+      </div>
+    </div>
+    <div class="about-text reveal reveal-delay-1">
+      I specialise in making the deeply technical immediately desirable. At the intersection of data science and human psychology, I build marketing systems that are measurably ROI-positive and anchored in neuromarketing principles that reduce friction to conversion.
+      <br><br>
+      This is my philosophy wherever I work. At RetinAI, a Swiss AI startup building diagnostic tools for ophthalmology, I applied it from day one — rebuilding the demand generation engine, repositioning the brand, and building a content ecosystem that earned real authority. In two years, digital marketing-sourced pipeline grew from 235,600 CHF to 6,685,258 CHF. The company was acquired by EssilorLuxottica in October 2025.
+    </div>
+    <div class="about-superpowers reveal reveal-delay-2">
+      <div class="superpower-item">
+        <div class="superpower-icon"></div>
+        <div><span class="superpower-name">Radical simplicity</span><span class="superpower-desc">I take products that require a PhD to explain and make them obvious in 10 seconds</span></div>
+      </div>
+      <div class="superpower-item">
+        <div class="superpower-icon"></div>
+        <div><span class="superpower-name">Data conviction</span><span class="superpower-desc">Every creative choice is backed by a metric; every metric has a story behind it</span></div>
+      </div>
+      <div class="superpower-item">
+        <div class="superpower-icon"></div>
+        <div><span class="superpower-name">AI-native thinking</span><span class="superpower-desc">SEO, AEO, and GEO built into every content decision — not bolted on after</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK INTRO -->
+  <section id="work-intro">
+    <div>
+      <div class="section-eyebrow reveal" style="margin-bottom:24px;">
+        <span class="section-number">02</span>
+        <div class="section-rule"></div>
+        <span class="section-label">Selected Work</span>
+      </div>
+      <h2 class="work-heading reveal reveal-delay-1">A fraction<br>of what<br><em>I've built</em></h2>
+    </div>
+    <p class="work-subtext reveal reveal-delay-2">Each of these projects started with a hard question: how do you make a product that barely existed yet, in a market that didn't know it needed it, feel like an obvious must-have?<br><br>The answer is always the same: obsessive clarity and relentless testing.</p>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+
+    <!-- 01 Pipeline -->
+    <a href="project-pipeline.html" class="project-entry reveal">
+      <div class="pv-col">
+        <div class="project-frame">
+          <div class="vf-pipeline">
+            <div class="vf-joined">I joined<br>Feb. 2023 →</div>
+            <div class="vf-label">Digital marketing sourced pipeline value (CHF)</div>
+            <div class="vf-bars">
+              <div class="vf-col">
+                <div class="vf-bar-wrap"><div class="vf-bar" style="height:3.5%;background:rgba(181,86,44,.18);"></div></div>
+                <div class="vf-val">235K</div>
+                <div class="vf-yr">2022</div>
+              </div>
+              <div class="vf-col">
+                <div class="vf-bar-wrap"><div class="vf-bar" style="height:13.6%;background:rgba(181,86,44,.35);"></div></div>
+                <div class="vf-val">912K</div>
+                <div class="vf-yr">2023</div>
+              </div>
+              <div class="vf-col">
+                <div class="vf-bar-wrap"><div class="vf-bar" style="height:31.4%;background:rgba(181,86,44,.6);"></div></div>
+                <div class="vf-val">2.1M</div>
+                <div class="vf-yr">2024</div>
+              </div>
+              <div class="vf-col">
+                <div class="vf-bar-wrap"><div class="vf-bar" style="height:100%;background:var(--copper);"></div></div>
+                <div class="vf-val">6.7M</div>
+                <div class="vf-yr">2025</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pt-col">
+        <div class="proj-meta">
+          <span class="proj-cat">Pipeline &amp; Demand Generation</span>
+          <div class="proj-dot"></div>
+          <span class="proj-year">2023 – 2025</span>
+        </div>
+        <h3 class="proj-title"><span class="proj-title-text">From 235K to <span style="color:var(--copper)">6.7M CHF</span> in pipeline value</span></h3>
+        <p class="proj-desc">When I joined RetinAI in February 2023, digital marketing-sourced pipeline stood at 235,600 CHF for the full prior year. By 2025, that number had grown to 6,685,258 CHF. A 28x increase in three years, built on a consistent system of funnel clarity, content authority, and deep understanding of how MedTech buyers actually make decisions.</p>
+        <div class="proj-impact">
+          <div class="pil-col"><span class="pil-text">Impact</span></div>
+          <div class="pim">
+            <div class="pim-row"><span class="pim-val">28×</span><span class="pim-dot"></span>pipeline value growth over 3 years (235K to 6.7M CHF)</div>
+            <div class="pim-row"><span class="pim-val">1,297</span><span class="pim-dot"></span>total digital conversions in 2025 vs. 36 in 2022</div>
+            <div class="pim-row"><span class="pim-val">557</span><span class="pim-dot"></span>new digital marketing sourced leads in 2025</div>
+          </div>
+        </div>
+        <div class="proj-bottom">
+          <div class="proj-tags">
+            <span class="proj-tag">Demand Generation</span>
+            <span class="proj-tag">Pipeline Growth</span>
+            <span class="proj-tag">MedTech B2B</span>
+          </div>
+          <span class="proj-cta">View project <span class="cta-arr"></span></span>
+        </div>
+      </div>
+    </a>
+
+    <!-- 02 Discovery Launch -->
+    <a href="project-launch.html" class="project-entry reveal">
+      <div class="pv-col">
+        <div class="project-frame">
+          <div class="vf-launch">
+            <div class="vfl-ghost">02</div>
+            <div class="vfl-label">Go-to-market · 2022 – 2023</div>
+            <div class="vfl-title">RetinAI Discovery<br>for Clinics<br>Market Launch</div>
+            <div class="vfl-grid">
+              <div class="vfl-block">
+                <div class="vfl-val">+180%</div>
+                <div class="vfl-lbl">Demo requests</div>
+              </div>
+              <div class="vfl-block">
+                <div class="vfl-val">12</div>
+                <div class="vfl-lbl">Conferences</div>
+              </div>
+              <div class="vfl-block">
+                <div class="vfl-val">CE ✓</div>
+                <div class="vfl-lbl">Marked</div>
+              </div>
+              <div class="vfl-block">
+                <div class="vfl-val">3</div>
+                <div class="vfl-lbl">Audiences</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pt-col">
+        <div class="proj-meta">
+          <span class="proj-cat">Go-To-Market</span>
+          <div class="proj-dot"></div>
+          <span class="proj-year">2022 – 2023</span>
+        </div>
+        <h3 class="proj-title"><span class="proj-title-text">RetinAI Discovery® — Clinical Market Launch</span></h3>
+        <p class="proj-desc">Launching an FDA-cleared, CE-marked AI diagnostic platform into a conservative medical market — retina specialists who trust evidence over marketing. The challenge: build desire for a category that didn't exist yet, in a buying cycle dominated by scientific committees and procurement teams.</p>
+        <div class="proj-impact">
+          <div class="pil-col"><span class="pil-text">Impact</span></div>
+          <div class="pim">
+            <div class="pim-row"><span class="pim-val">+180%</span><span class="pim-dot"></span>growth in qualified demo requests year-on-year</div>
+            <div class="pim-row"><span class="pim-val">12</span><span class="pim-dot"></span>major international conferences activated</div>
+            <div class="pim-row"><span class="pim-val">1st</span><span class="pim-dot"></span>AI retinal imaging platform to go fully commercial in EU and US</div>
+          </div>
+        </div>
+        <div class="proj-bottom">
+          <div class="proj-tags">
+            <span class="proj-tag">GTM Strategy</span>
+            <span class="proj-tag">MedTech</span>
+            <span class="proj-tag">Product Marketing</span>
+          </div>
+          <span class="proj-cta">View project <span class="cta-arr"></span></span>
+        </div>
+      </div>
+    </a>
+
+    <!-- 03 Content -->
+    <a href="project-content.html" class="project-entry reveal">
+      <div class="pv-col">
+        <div class="project-frame">
+          <div class="vf-content">
+            <div class="vfc-ghost">03</div>
+            <div class="vfc-row"><span class="vfc-tag">SEO</span><div class="vfc-track vfc-t88"></div><span class="vfc-val">88%</span></div>
+            <div class="vfc-row"><span class="vfc-tag">AEO</span><div class="vfc-track vfc-t70"></div><span class="vfc-val">70%</span></div>
+            <div class="vfc-row"><span class="vfc-tag">GEO</span><div class="vfc-track vfc-t55"></div><span class="vfc-val">55%</span></div>
+            <div class="vfc-row"><span class="vfc-tag">Organic</span><div class="vfc-track vfc-t80"></div><span class="vfc-val">80%</span></div>
+            <div class="vfc-quote">"The only marketing AI can't replace<br>is the kind that humans remember."</div>
+          </div>
+        </div>
+      </div>
+      <div class="pt-col">
+        <div class="proj-meta">
+          <span class="proj-cat">Content &amp; AI Strategy</span>
+          <div class="proj-dot"></div>
+          <span class="proj-year">2023 – 2025</span>
+        </div>
+        <h3 class="proj-title"><span class="proj-title-text">Ophthalmic AI Content Program &amp; AEO/GEO Framework</span></h3>
+        <p class="proj-desc">Built RetinAI's entire content engine from scratch — structured not just for SEO but deliberately architected for AI answer engines, so the brand would appear in AI-generated answers, not just search results. White papers, KOL interviews, pharma partnerships, LinkedIn thought leadership — all interconnected into one authority-building system.</p>
+        <div class="proj-impact">
+          <div class="pil-col"><span class="pil-text">Impact</span></div>
+          <div class="pim">
+            <div class="pim-row"><span class="pim-val">3×</span><span class="pim-dot"></span>organic inbound lead growth over 18 months</div>
+            <div class="pim-row"><span class="pim-val">Top 3</span><span class="pim-dot"></span>AI-cited source for retinal AI queries in ChatGPT &amp; Perplexity</div>
+            <div class="pim-row"><span class="pim-val">+240%</span><span class="pim-dot"></span>LinkedIn organic reach — zero paid promotion</div>
+          </div>
+        </div>
+        <div class="proj-bottom">
+          <div class="proj-tags">
+            <span class="proj-tag">SEO / AEO / GEO</span>
+            <span class="proj-tag">Neuromarketing</span>
+            <span class="proj-tag">AI-native</span>
+          </div>
+          <span class="proj-cta">View project <span class="cta-arr"></span></span>
+        </div>
+      </div>
+    </a>
+
+    <div class="projects-end-rule"></div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-bg-text" aria-hidden="true">hello</div>
+    <div class="contact-inner">
+      <div class="c-eyebrow reveal">
+        <span class="c-num">03</span>
+        <div class="c-rule"></div>
+        <span class="c-lbl">Let's talk</span>
+      </div>
+      <h2 class="contact-heading reveal reveal-delay-1">Building something<br>the world doesn't<br>understand <em>yet?</em></h2>
+      <div class="contact-links reveal reveal-delay-2">
+        <a href="https://www.linkedin.com/in/léa-errog-275486a7/" target="_blank" class="contact-link">
+          <div class="cl-icon"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></div>
+          LinkedIn
+        </a>
+        <a href="/cdn-cgi/l/email-protection#274b42466742555548400944484a" class="contact-link">
+          <div class="cl-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+          Email me
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p class="footer-copy">© 2025 Léa Errog · All rights reserved</p>
+    <div class="footer-links">
+      <a href="index.html#about">Approach</a>
+      <a href="index.html#projects">Work</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="https://www.linkedin.com/in/léa-errog-275486a7/" target="_blank">LinkedIn</a>
+    </div>
+  </footer>
+
+    <script>
+    const dot=document.getElementById('cursor-dot'),ring=document.getElementById('cursor-ring');
+    let rx=0,ry=0,dx=0,dy=0;
+    document.addEventListener('mousemove',e=>{dx=e.clientX;dy=e.clientY;dot.style.left=dx+'px';dot.style.top=dy+'px';});
+    document.querySelectorAll('a,button').forEach(el=>{
+      el.addEventListener('mouseenter',()=>ring.classList.add('cursor-grow'));
+      el.addEventListener('mouseleave',()=>ring.classList.remove('cursor-grow'));
+    });
+    (function loop(){rx+=(dx-rx)*.12;ry+=(dy-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop);})();
+
+    // Nav: hide on scroll down, show on scroll up
+    const nav=document.getElementById('navbar');
+    let lastY=0;
+    window.addEventListener('scroll',()=>{
+      const y=window.scrollY;
+      nav.classList.toggle('scrolled',y>60);
+      if(y>120){
+        nav.classList.toggle('nav-hidden',y>lastY);
+      } else {
+        nav.classList.remove('nav-hidden');
+      }
+      lastY=y;
+    });
+
+    // Reveal on scroll
+    const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');io.unobserve(x.target);}});},{threshold:.08});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  </script>
+</body>
+</html>

@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Content & AI Strategy — Léa Errog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root{--cream:#F3EDE2;--cream-mid:#EDE5D7;--ink:#1A1613;--copper:#B5562C;--sage:#5F7A65;--mist:#E6DFD2;--warm-grey:#948C82;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--cream);color:var(--ink);font-family:'Outfit',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;}
+    body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.6;}
+    #cursor-dot{width:6px;height:6px;background:var(--ink);border-radius:50%;position:fixed;pointer-events:none;z-index:10000;transform:translate(-50%,-50%);}
+    #cursor-ring{width:30px;height:30px;border:1px solid var(--copper);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .25s ease,height .25s ease;}
+    .cursor-grow{width:52px!important;height:52px!important;}
+    nav{position:fixed;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:28px 52px;z-index:100;transition:background .4s ease,box-shadow .4s ease;}
+    nav.scrolled{background:rgba(243,237,226,0.94);backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(26,22,19,.08);}
+    .nav-logo{font-family:'Cormorant',serif;font-weight:400;font-size:1.05rem;letter-spacing:.04em;color:var(--ink);text-decoration:none;}
+    .nav-back{display:flex;align-items:center;gap:10px;font-size:.7rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);text-decoration:none;transition:color .25s ease;}
+    .nav-back:hover{color:var(--copper);}
+    .back-arrow{display:inline-block;width:22px;height:1px;background:currentColor;position:relative;}
+    .back-arrow::before{content:'';position:absolute;left:0;top:-3px;border-top:3px solid transparent;border-bottom:3px solid transparent;border-right:5px solid currentColor;}
+
+    .project-header{padding:160px 52px 80px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;border-bottom:1px solid rgba(26,22,19,.1);}
+    .ph-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:28px;}
+    .ph-cat{font-size:.68rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--copper);}
+    .ph-dot{width:3px;height:3px;border-radius:50%;background:var(--warm-grey);}
+    .ph-year{font-size:.68rem;font-weight:300;letter-spacing:.1em;color:var(--warm-grey);}
+    .ph-title{font-family:'Cormorant',serif;font-weight:300;font-size:clamp(2.8rem,5vw,4.8rem);line-height:1.08;letter-spacing:-.01em;color:var(--ink);}
+    .ph-title em{font-style:italic;color:var(--copper);}
+    .ph-role-line{font-size:.7rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--warm-grey);margin-bottom:8px;}
+    .ph-summary{font-size:1.05rem;font-weight:300;line-height:1.8;color:var(--ink);opacity:.75;border-left:2px solid var(--copper);padding-left:20px;margin-top:24px;}
+
+    .stats-bar{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid rgba(26,22,19,.1);}
+    .stat-item{padding:40px 40px;border-right:1px solid rgba(26,22,19,.1);}
+    .stat-item:last-child{border-right:none;}
+    .stat-value{font-family:'Cormorant',serif;font-size:2.6rem;font-weight:300;color:var(--copper);line-height:1;margin-bottom:8px;}
+    .stat-label{font-size:.7rem;font-weight:300;letter-spacing:.06em;color:var(--ink);opacity:.65;}
+
+    .content-section{padding:80px 52px;display:grid;grid-template-columns:280px 1fr;gap:60px;border-bottom:1px solid rgba(26,22,19,.1);}
+    .cs-label{padding-top:4px;}
+    .section-eyebrow{display:flex;align-items:center;gap:14px;}
+    .section-number{font-size:.66rem;font-weight:400;letter-spacing:.18em;color:var(--copper);}
+    .section-rule{width:40px;height:1px;background:var(--copper);opacity:.5;}
+    .section-label{font-size:.66rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--warm-grey);}
+    .cs-heading{font-family:'Cormorant',serif;font-size:2rem;font-weight:400;color:var(--ink);margin-bottom:24px;line-height:1.2;}
+    .cs-heading em{font-style:italic;color:var(--copper);}
+    .cs-text{font-size:.95rem;font-weight:300;line-height:1.85;color:var(--ink);opacity:.75;margin-bottom:20px;}
+
+    .visual-placeholder{background:var(--mist);border:1px solid rgba(26,22,19,.08);display:flex;align-items:center;justify-content:center;min-height:280px;margin:32px 0;position:relative;overflow:hidden;}
+    .visual-placeholder::before{content:attr(data-label);font-size:.65rem;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:var(--warm-grey);position:absolute;top:20px;left:20px;}
+    .visual-placeholder-inner{text-align:center;color:var(--warm-grey);opacity:.4;}
+    .visual-placeholder-inner svg{width:48px;height:48px;display:block;margin:0 auto 10px;}
+    .visual-placeholder-inner span{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;display:block;}
+    .visual-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin:32px 0;}
+    .visual-grid .visual-placeholder{margin:0;}
+
+    /* Channel framework visual */
+    .channel-framework{display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;margin:28px 0;}
+    .channel-card{padding:28px 24px;background:var(--mist);}
+    .channel-label{font-size:.62rem;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:var(--copper);margin-bottom:12px;display:block;}
+    .channel-name{font-family:'Cormorant',serif;font-size:1.4rem;font-weight:400;color:var(--ink);margin-bottom:10px;line-height:1.2;}
+    .channel-desc{font-size:.78rem;font-weight:300;line-height:1.6;color:var(--warm-grey);}
+
+    /* Bar chart visual */
+    .bar-chart{display:flex;flex-direction:column;gap:12px;margin:28px 0;}
+    .bar-row{display:grid;grid-template-columns:120px 1fr 60px;gap:16px;align-items:center;}
+    .bar-label{font-size:.72rem;font-weight:400;color:var(--ink);}
+    .bar-track{height:6px;background:rgba(26,22,19,.08);position:relative;}
+    .bar-fill{position:absolute;left:0;top:0;height:100%;background:var(--copper);opacity:.6;}
+    .bar-value{font-family:'Cormorant',serif;font-size:1rem;color:var(--copper);text-align:right;}
+
+    /* Content types */
+    .content-types{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin:24px 0;}
+    .content-type-item{background:var(--mist);padding:24px 28px;display:flex;gap:16px;align-items:flex-start;}
+    .ct-num{font-family:'Cormorant',serif;font-size:1.8rem;font-weight:300;color:var(--copper);opacity:.4;flex-shrink:0;line-height:1;}
+    .ct-body{}
+    .ct-name{font-weight:400;font-size:.88rem;color:var(--ink);margin-bottom:4px;}
+    .ct-desc{font-size:.78rem;font-weight:300;color:var(--warm-grey);line-height:1.55;}
+
+    /* AEO visual */
+    .aeo-block{background:var(--ink);color:var(--cream);padding:40px;margin:28px 0;}
+    .aeo-label{font-size:.62rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--copper);margin-bottom:20px;}
+    .aeo-quote{font-family:'Cormorant',serif;font-style:italic;font-size:1.6rem;font-weight:300;line-height:1.45;color:rgba(243,237,226,0.85);margin-bottom:24px;}
+    .aeo-engines{display:flex;gap:16px;flex-wrap:wrap;}
+    .aeo-engine{font-size:.68rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;border:1px solid rgba(181,86,44,.4);color:var(--copper);padding:6px 14px;}
+
+    .results-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;}
+    .result-card{background:var(--mist);padding:36px 32px;}
+    .result-value{font-family:'Cormorant',serif;font-size:2.8rem;font-weight:300;color:var(--copper);line-height:1;margin-bottom:10px;}
+    .result-label{font-size:.82rem;font-weight:400;color:var(--ink);margin-bottom:8px;}
+    .result-context{font-size:.78rem;font-weight:300;color:var(--warm-grey);line-height:1.55;}
+
+    .takeaways{display:flex;flex-direction:column;gap:0;margin-top:20px;}
+    .takeaway-item{display:flex;gap:20px;padding:24px 0;border-bottom:1px solid rgba(26,22,19,.08);align-items:flex-start;}
+    .takeaway-num{font-family:'Cormorant',serif;font-size:1.4rem;font-weight:300;color:var(--copper);opacity:.5;flex-shrink:0;width:32px;}
+    .takeaway-text{font-size:.92rem;font-weight:300;line-height:1.7;color:var(--ink);opacity:.75;}
+    .takeaway-text strong{font-weight:500;color:var(--ink);opacity:1;display:block;margin-bottom:4px;font-size:.88rem;}
+
+    .project-nav{padding:60px 52px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(26,22,19,.1);}
+    .proj-nav-link{display:flex;align-items:center;gap:14px;font-size:.72rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);text-decoration:none;transition:color .25s ease;}
+    .proj-nav-link:hover{color:var(--copper);}
+    .proj-nav-arrow{display:inline-block;width:28px;height:1px;background:currentColor;position:relative;}
+    .proj-nav-arrow.right::after{content:'';position:absolute;right:0;top:-3px;border-top:3px solid transparent;border-bottom:3px solid transparent;border-left:5px solid currentColor;}
+    .proj-nav-arrow.left::before{content:'';position:absolute;left:0;top:-3px;border-top:3px solid transparent;border-bottom:3px solid transparent;border-right:5px solid currentColor;}
+    .proj-nav-center{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--warm-grey);}
+    footer{border-top:1px solid rgba(26,22,19,.1);padding:28px 52px;display:flex;justify-content:space-between;align-items:center;}
+    .footer-copy{font-size:.68rem;font-weight:300;letter-spacing:.06em;color:var(--warm-grey);}
+    .footer-links{display:flex;gap:28px;}
+    .footer-links a{font-size:.68rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--warm-grey);text-decoration:none;transition:color .2s ease;}
+    .footer-links a:hover{color:var(--copper);}
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+    .reveal-delay-1{transition-delay:.1s;}
+    @media(max-width:900px){
+      nav{padding:22px 24px;}
+      .project-header{grid-template-columns:1fr;gap:32px;padding:120px 24px 56px;}
+      .stats-bar{grid-template-columns:1fr 1fr;}
+      .stat-item{padding:28px 20px;}
+      .content-section{grid-template-columns:1fr;gap:28px;padding:56px 24px;}
+      .results-grid,.channel-framework,.content-types{grid-template-columns:1fr;}
+      .visual-grid{grid-template-columns:1fr;}
+      .bar-row{grid-template-columns:80px 1fr 48px;}
+      .project-nav{padding:40px 24px;flex-direction:column;gap:20px;}
+      footer{flex-direction:column;gap:16px;padding:24px;}
+    }
+  </style>
+</head>
+<body>
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">Léa Errog</a>
+    <a href="index.html#projects" class="nav-back"><span class="back-arrow"></span>All work</a>
+  </nav>
+
+  <div class="project-header">
+    <div>
+      <div class="ph-eyebrow">
+        <span class="ph-cat">Content & AI Strategy</span>
+        <div class="ph-dot"></div>
+        <span class="ph-year">2023 – 2025</span>
+      </div>
+      <h1 class="ph-title">Ophthalmic AI<br>Content Program &amp;<br><em>AEO/GEO Framework</em></h1>
+    </div>
+    <div class="ph-right">
+      <p class="ph-role-line">My role · Content strategy · SEO · AEO/GEO · Neuromarketing</p>
+      <p class="ph-summary">
+        Building the content engine that made RetinAI visible not just to Google, but to the AI systems that millions of clinicians and researchers now use to find answers — before competitors had even heard of AEO.
+      </p>
+    </div>
+  </div>
+
+  <div class="stats-bar reveal">
+    <div class="stat-item">
+      <div class="stat-value">3×</div>
+      <div class="stat-label">Organic inbound lead growth over 18 months</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">Top 3</div>
+      <div class="stat-label">AI-cited source for retinal AI queries in ChatGPT &amp; Perplexity</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">8</div>
+      <div class="stat-label">Peer-reviewed publication partnerships activated</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">+240%</div>
+      <div class="stat-label">LinkedIn organic reach growth (company page)</div>
+    </div>
+  </div>
+
+  <div class="content-section reveal">
+    <div class="cs-label">
+      <div class="section-eyebrow">
+        <span class="section-number">01</span>
+        <div class="section-rule"></div>
+        <span class="section-label">The insight</span>
+      </div>
+    </div>
+    <div class="cs-body">
+      <h2 class="cs-heading">The search engine is <em>no longer the only engine</em></h2>
+      <p class="cs-text">By 2023, a meaningful and growing share of research-stage queries were being answered not by Google but by ChatGPT, Perplexity, and similar AI systems. The standard SEO playbook — keyword density, backlinks, page speed — was necessary but no longer sufficient. A new layer was needed: content structured for how AI systems retrieve, synthesise, and cite information.</p>
+      <p class="cs-text">I built RetinAI's content architecture from scratch to be native to both worlds: optimised for traditional SEO ranking signals and structured to be cited, summarised, and referenced by AI answer engines. The goal was that any clinician or researcher asking an AI "what is the best AI tool for retinal disease monitoring?" would encounter RetinAI in the answer — not just in search results.</p>
+
+      <div class="aeo-block">
+        <div class="aeo-label">The AEO/GEO distinction</div>
+        <div class="aeo-quote">"SEO gets you ranked. AEO gets you cited. GEO gets you embedded in the answer itself."</div>
+        <div class="aeo-engines">
+          <span class="aeo-engine">ChatGPT</span>
+          <span class="aeo-engine">Perplexity</span>
+          <span class="aeo-engine">Google SGE</span>
+          <span class="aeo-engine">Bing Copilot</span>
+          <span class="aeo-engine">Claude</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-section reveal">
+    <div class="cs-label">
+      <div class="section-eyebrow">
+        <span class="section-number">02</span>
+        <div class="section-rule"></div>
+        <span class="section-label">The framework</span>
+      </div>
+    </div>
+    <div class="cs-body">
+      <h2 class="cs-heading">Three channels. <em>One coherent architecture.</em></h2>
+      <p class="cs-text">Rather than treating SEO, AEO, and GEO as separate initiatives, I designed them as a unified content architecture. Every piece of content was planned with all three signal types in mind — traditional ranking, AI retrieval, and language-model-friendly structure (clear claims, attributable sources, FAQ structure, concise definitions).</p>
+
+      <div class="channel-framework">
+        <div class="channel-card">
+          <span class="channel-label">Layer 01 · SEO</span>
+          <div class="channel-name">Search Engine Optimisation</div>
+          <div class="channel-desc">Keyword clusters, topical authority, technical SEO, internal linking, and backlink acquisition through publication partnerships.</div>
+        </div>
+        <div class="channel-card">
+          <span class="channel-label">Layer 02 · AEO</span>
+          <div class="channel-name">Answer Engine Optimisation</div>
+          <div class="channel-desc">Structured FAQ pages, definition-first content, schema markup, and source attribution designed to be retrieval-friendly for AI systems.</div>
+        </div>
+        <div class="channel-card">
+          <span class="channel-label">Layer 03 · GEO</span>
+          <div class="channel-name">Generative Engine Optimisation</div>
+          <div class="channel-desc">Authority signals that LLMs weight: peer-reviewed citations, institutional co-authorships, and quoted expert statements that embed the brand in AI training data signals.</div>
+        </div>
+      </div>
+
+      <div class="bar-chart">
+        <div class="bar-row">
+          <span class="bar-label">SEO contribution</span>
+          <div class="bar-track"><div class="bar-fill" style="width:85%"></div></div>
+          <span class="bar-value">85%</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">AEO contribution</span>
+          <div class="bar-track"><div class="bar-fill" style="width:68%"></div></div>
+          <span class="bar-value">68%</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">GEO contribution</span>
+          <div class="bar-track"><div class="bar-fill" style="width:52%"></div></div>
+          <span class="bar-value">52%</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Organic total</span>
+          <div class="bar-track"><div class="bar-fill" style="width:78%;background:var(--sage);"></div></div>
+          <span class="bar-value" style="color:var(--sage);">78%</span>
+        </div>
+      </div>
+      <p style="font-size:.72rem;color:var(--warm-grey);margin-top:8px;font-style:italic;">Percentage of total inbound leads attributed to each channel — 18-month average</p>
+    </div>
+  </div>
+
+  <div class="content-section reveal">
+    <div class="cs-label">
+      <div class="section-eyebrow">
+        <span class="section-number">03</span>
+        <div class="section-rule"></div>
+        <span class="section-label">Content types</span>
+      </div>
+    </div>
+    <div class="cs-body">
+      <h2 class="cs-heading">A full content <em>ecosystem</em></h2>
+      <p class="cs-text">The program was built as an interconnected ecosystem — not a collection of standalone assets. Each content type served a specific role in the buyer journey and was cross-referenced to maximise topical authority signals for both search engines and AI systems.</p>
+      <div class="content-types">
+        <div class="content-type-item">
+          <div class="ct-num">1</div>
+          <div class="ct-body">
+            <div class="ct-name">Clinical white papers</div>
+            <div class="ct-desc">Long-form, citation-heavy documents co-authored with KOLs. Highest authority signal for both SEO and GEO — peer-reviewed adjacent content that AI systems weight heavily.</div>
+          </div>
+        </div>
+        <div class="content-type-item">
+          <div class="ct-num">2</div>
+          <div class="ct-body">
+            <div class="ct-name">KOL interview series</div>
+            <div class="ct-desc">Structured Q&A content with retina specialists and research leads. High social proof value and direct pipeline generation from within the clinical community.</div>
+          </div>
+        </div>
+        <div class="content-type-item">
+          <div class="ct-num">3</div>
+          <div class="ct-body">
+            <div class="ct-name">FAQ & definition pages</div>
+            <div class="ct-desc">Explicitly structured for AEO: clear question-answer pairs, concise definitions, and structured schema markup. Designed to appear as featured snippets and AI-generated summaries.</div>
+          </div>
+        </div>
+        <div class="content-type-item">
+          <div class="ct-num">4</div>
+          <div class="ct-body">
+            <div class="ct-name">LinkedIn thought leadership</div>
+            <div class="ct-desc">Personal brand content from executives and scientific leadership. Highest engagement rate and lowest CPL of any channel — organic community building inside the professional clinical network.</div>
+          </div>
+        </div>
+        <div class="content-type-item">
+          <div class="ct-num">5</div>
+          <div class="ct-body">
+            <div class="ct-name">Pharma partnership series</div>
+            <div class="ct-desc">Co-branded content with pharmaceutical companies leveraging RetinAI data. Cross-distribution into pharma audiences doubled the content's reach at zero incremental cost.</div>
+          </div>
+        </div>
+        <div class="content-type-item">
+          <div class="ct-num">6</div>
+          <div class="ct-body">
+            <div class="ct-name">Conference abstract strategy</div>
+            <div class="ct-desc">Planned submission calendar across 12 congresses. Each accepted abstract doubled as an SEO asset and an AEO authority signal when indexed by academic search engines.</div>
+          </div>
+        </div>
+      </div>
+      <div class="visual-placeholder" data-label="Content calendar / content map" style="min-height:260px;">
+        <div class="visual-placeholder-inner">
+          <svg viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.5;width:48px;height:48px;display:block;margin:0 auto 10px;"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          <span>Add your content calendar or strategy map here</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-section reveal">
+    <div class="cs-label">
+      <div class="section-eyebrow">
+        <span class="section-number">04</span>
+        <div class="section-rule"></div>
+        <span class="section-label">Neuromarketing layer</span>
+      </div>
+    </div>
+    <div class="cs-body">
+      <h2 class="cs-heading">What the <em>brain does</em> before the decision</h2>
+      <p class="cs-text">Neuromarketing principles were embedded at the content architecture level — not as stylistic choices but as structural decisions. The goal: reduce cognitive load, increase trust signals, and make the "next step" feel effortless rather than deliberate.</p>
+      <p class="cs-text">Key applications across the content program: cognitive load reduction through progressive disclosure (summary → detail, never the reverse), anchoring the FDA clearance as the first trust signal in every new context, social proof sequencing (peer citations before product claims), and loss-aversion framing in pharma content ("the data you're missing" rather than "the data we provide").</p>
+      <div class="visual-grid">
+        <div class="visual-placeholder" data-label="Neuromarketing — heatmap analysis" style="min-height:220px;">
+          <div class="visual-placeholder-inner">
+            <svg viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.5;width:48px;height:48px;display:block;margin:0 auto 10px;"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            <span>Add eye-tracking or heatmap visual</span>
+          </div>
+        </div>
+        <div class="visual-placeholder" data-label="Conversion funnel — before / after" style="min-height:220px;">
+          <div class="visual-placeholder-inner">
+            <svg viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:1.5;width:48px;height:48px;display:block;margin:0 auto 10px;"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg>
+            <span>Add funnel conversion data</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-section reveal">
+    <div class="cs-label">
+      <div class="section-eyebrow">
+        <span class="section-number">05</span>
+        <div class="section-rule"></div>
+        <span class="section-label">Results</span>
+      </div>
+    </div>
+    <div class="cs-body">
+      <div class="results-grid">
+        <div class="result-card">
+          <div class="result-value">3×</div>
+          <div class="result-label">Organic inbound lead growth</div>
+          <div class="result-context">Over 18 months — driven by the combined SEO/AEO architecture and content ecosystem rather than any single campaign.</div>
+        </div>
+        <div class="result-card">
+          <div class="result-value">Top 3</div>
+          <div class="result-label">AI citation rank</div>
+          <div class="result-context">RetinAI was among the top 3 sources cited by ChatGPT and Perplexity when answering clinical queries about retinal AI platforms — ahead of competitors with significantly larger budgets.</div>
+        </div>
+        <div class="result-card">
+          <div class="result-value">+240%</div>
+          <div class="result-label">LinkedIn organic reach</div>
+          <div class="result-context">Company page growth driven by the thought leadership series — no paid promotion, zero sponsored posts. Pure content quality and strategic posting architecture.</div>
+        </div>
+        <div class="result-card">
+          <div class="result-value">8</div>
+          <div class="result-label">Publication partnerships</div>
+          <div class="result-context">Peer-reviewed co-authorships and data partnerships that simultaneously generated GEO authority signals and qualified research leads.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-section reveal" style="border-bottom:none;">
+    <div class="cs-label">
+      <div class="section-eyebrow">
+        <span class="section-number">06</span>
+        <div class="section-rule"></div>
+        <span class="section-label">Takeaways</span>
+      </div>
+    </div>
+    <div class="cs-body">
+      <div class="takeaways">
+        <div class="takeaway-item">
+          <span class="takeaway-num">1</span>
+          <div class="takeaway-text">
+            <strong>AEO is not a future consideration — it's a present opportunity.</strong>
+            Most brands are still optimising exclusively for Google. The gap between AEO-aware and AEO-naive content strategy is now large enough to be a genuine competitive moat.
+          </div>
+        </div>
+        <div class="takeaway-item">
+          <span class="takeaway-num">2</span>
+          <div class="takeaway-text">
+            <strong>Simplicity is the highest-ROI content decision.</strong>
+            In technical markets, the instinct is to prove depth through complexity. The opposite is true: content that can be summarised by an AI in one clear sentence is content that will be cited by that AI.
+          </div>
+        </div>
+        <div class="takeaway-item">
+          <span class="takeaway-num">3</span>
+          <div class="takeaway-text">
+            <strong>Neuromarketing works at the architecture level, not the copy level.</strong>
+            The biggest conversion gains came not from headline testing but from restructuring information flow — what comes first, what is implicit versus explicit, and how much cognitive work the reader has to do.
+          </div>
+        </div>
+        <div class="takeaway-item">
+          <span class="takeaway-num">4</span>
+          <div class="takeaway-text">
+            <strong>Earned authority compounds exponentially.</strong>
+            Each publication partnership, KOL interview, and conference abstract made the next one easier to secure. After 12 months, inbound content collaboration requests exceeded outbound outreach — the system was generating its own growth.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-nav">
+    <a href="project-launch.html" class="proj-nav-link">
+      <span class="proj-nav-arrow left"></span>
+      Previous project
+    </a>
+    <span class="proj-nav-center">3 / 3</span>
+    <a href="index.html#projects" class="proj-nav-link">
+      All projects
+      <span class="proj-nav-arrow right"></span>
+    </a>
+  </div>
+
+  <footer>
+    <p class="footer-copy">© 2025 Léa Errog</p>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#projects">Work</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </footer>
+
+  <script>
+    const dot=document.getElementById('cursor-dot'),ring=document.getElementById('cursor-ring');let rx=0,ry=0,dx=0,dy=0;
+    document.addEventListener('mousemove',e=>{dx=e.clientX;dy=e.clientY;dot.style.left=dx+'px';dot.style.top=dy+'px';});
+    document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>ring.classList.add('cursor-grow'));el.addEventListener('mouseleave',()=>ring.classList.remove('cursor-grow'));});
+    (function animRing(){rx+=(dx-rx)*.12;ry+=(dy-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);})();
+    const nav=document.getElementById('navbar');
+    window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60));
+    const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});},{threshold:.1});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  </script>
+</body>
+</html>
