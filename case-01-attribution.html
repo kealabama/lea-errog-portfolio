@@ -8,7 +8,257 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="prism.css">
+<style>
+/* ============================================================
+   PRISM — shared design system for Léa Errog's portfolio
+   Light, prismatic, glass. Reused by every page.
+   ============================================================ */
+
+:root{
+  --chalk:#F7F9FB;--frost:#EDF1F4;--ice:#C3D5EA;--photon:#B2E6F5;
+  --vectoris:#587FA4;--prisme:#8272A5;
+  --radiance:#FCEBDD;--phare:#E79A63;--flux:#F6E6A8;--aurora:#F9D0E2;
+  --accent:#E8956B;--accent-deep:#D97A4E;--accent-soft:#F6C9AC;
+
+  --bg:#F4F7FB;--bg-elev:#FFFFFF;
+  --surface:rgba(255,255,255,0.55);
+  --surface-strong:rgba(255,255,255,0.72);
+  --surface-brd:rgba(255,255,255,0.85);
+  --ink:#3A4256;--ink-soft:#6B7488;--ink-faint:#9AA3B5;
+  --hairline:rgba(90,105,140,0.16);
+
+  --glass-blur:22px;
+  --shadow-sm:0 1px 2px rgba(90,105,140,.06),0 4px 14px rgba(90,105,140,.06);
+  --shadow-md:0 12px 34px rgba(90,105,140,.13);
+  --shadow-lg:0 30px 70px rgba(90,105,140,.18);
+
+  --font-display:"Space Grotesk",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+
+  --s2:8px;--s3:12px;--s4:16px;--s6:24px;--s8:32px;--s12:48px;--s16:64px;--s24:96px;--s32:128px;
+  --r-s:10px;--r-m:16px;--r-l:24px;--r-xl:34px;--r-pill:999px;
+
+  /* iridescent recipes */
+  --iris-1:linear-gradient(135deg,#DCE7F3 0%,#C9E4F1 35%,#E4D9EC 68%,#FCEBDD 100%);
+  --iris-2:linear-gradient(150deg,#E8E1F0 0%,#C9E4F1 40%,#F9D0E2 75%,#F6E6A8 100%);
+  --iris-3:linear-gradient(120deg,#B2E6F5 0%,#8272A5 55%,#F6C9AC 100%);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-body);
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+/* ambient prismatic wash — shared */
+.aura{position:fixed;inset:0;z-index:0;pointer-events:none}
+.aura span{position:absolute;border-radius:50%;filter:blur(100px);opacity:.65}
+.aura .a{width:44vw;height:44vw;left:-10vw;top:-12vw;background:radial-gradient(circle,rgba(130,114,165,.4),transparent 62%)}
+.aura .b{width:50vw;height:50vw;right:-14vw;top:-6vw;background:radial-gradient(circle,rgba(178,230,245,.6),transparent 62%)}
+.aura .c{width:42vw;height:42vw;left:24vw;bottom:-22vw;background:radial-gradient(circle,rgba(252,235,221,.55),rgba(249,208,226,.35) 55%,transparent 70%)}
+
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 var(--s6)}
+
+/* crosshair marker */
+.mk{position:relative}
+.mk::before{content:"+";position:absolute;top:-16px;left:-4px;color:var(--ink-faint);
+  font-family:var(--font-mono);font-weight:400;font-size:20px;line-height:1}
+
+/* nav pill */
+.nav{position:fixed;top:22px;left:50%;transform:translateX(-50%);z-index:50;
+  display:flex;align-items:center;gap:6px;padding:6px 6px 6px 18px;
+  background:var(--surface-strong);backdrop-filter:blur(var(--glass-blur));
+  border:1px solid var(--surface-brd);border-radius:var(--r-pill);box-shadow:var(--shadow-md);
+  transition:transform .4s cubic-bezier(.2,.8,.2,1),opacity .4s}
+.nav.nav-hidden{transform:translateX(-50%) translateY(-140%);opacity:0;pointer-events:none}
+.nav .brand{font-family:var(--font-display);font-weight:700;font-size:15px;letter-spacing:-.02em;margin-right:12px;display:flex;align-items:center;gap:8px;color:var(--ink);text-decoration:none}
+.nav .brand .dot{width:9px;height:9px;border-radius:50%;
+  background:conic-gradient(from 180deg,var(--photon),var(--prisme),var(--accent-soft),var(--photon))}
+.nav .brand .avatar-nav{width:28px;height:28px;border-radius:50%;object-fit:cover;
+  border:1.5px solid rgba(255,255,255,.9);box-shadow:0 2px 8px rgba(90,105,140,.2)}
+.nav a.link{color:var(--ink-soft);text-decoration:none;font-size:13.5px;font-weight:500;padding:8px 14px;border-radius:var(--r-pill);transition:all .2s}
+.nav a.link:hover{color:var(--ink);background:rgba(255,255,255,.5)}
+.nav a.cta{background:var(--ink);color:#fff;font-size:13.5px;font-weight:600;padding:9px 16px;border-radius:var(--r-pill);text-decoration:none;transition:background .2s}
+.nav a.cta:hover{background:var(--accent-deep)}
+@media(max-width:640px){.nav a.link{display:none}}
+
+/* glass panel */
+.glass{background:var(--surface);backdrop-filter:blur(var(--glass-blur));
+  border:1px solid var(--surface-brd);border-radius:var(--r-l);box-shadow:var(--shadow-md)}
+
+/* eyebrow / labels */
+.eyebrow{font-family:var(--font-mono);font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--prisme)}
+.eyelabel{font-family:var(--font-mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint)}
+
+/* buttons */
+.btn{font-family:var(--font-body);font-weight:600;font-size:14px;padding:12px 22px;border-radius:var(--r-pill);
+  border:1px solid transparent;cursor:pointer;transition:all .2s;display:inline-flex;gap:9px;align-items:center;text-decoration:none}
+.btn:focus-visible{outline:2px solid var(--prisme);outline-offset:3px}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-deep);transform:translateY(-1px)}
+.btn-ghost{background:var(--surface-strong);backdrop-filter:blur(10px);border-color:var(--surface-brd);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--prisme);color:var(--prisme)}
+
+/* arrow circle */
+.arrow-circle{width:44px;height:44px;border-radius:50%;background:var(--ink);color:#fff;
+  display:inline-flex;align-items:center;justify-content:center;font-size:18px;transition:all .25s;flex-shrink:0}
+
+/* reveal on scroll */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+}
+
+/* ============================================================
+   CASE STUDY PAGE LAYOUT (shared by all 5 case pages)
+   ============================================================ */
+.cs-back{position:fixed;top:22px;left:22px;z-index:50;width:46px;height:46px;border-radius:50%;
+  background:var(--surface-strong);backdrop-filter:blur(var(--glass-blur));border:1px solid var(--surface-brd);
+  box-shadow:var(--shadow-md);display:flex;align-items:center;justify-content:center;color:var(--ink);text-decoration:none;font-size:19px;transition:all .2s}
+.cs-back:hover{border-color:var(--prisme);color:var(--prisme);transform:translateX(-2px)}
+
+/* hero of a case study: giant number + out-of-frame iridescent visual */
+.cs-hero{position:relative;padding:130px 0 var(--s8);overflow:visible}
+.cs-hero-bg{position:absolute;top:0;left:0;right:0;bottom:-90px;z-index:0;pointer-events:none;
+  background:radial-gradient(120% 90% at 82% 14%,var(--tint-a,rgba(252,235,221,.5)),transparent 55%),
+             radial-gradient(90% 80% at 10% 86%,var(--tint-b,rgba(249,208,226,.4)),transparent 55%),
+             radial-gradient(90% 90% at 50% 40%,rgba(226,217,236,.28),transparent 62%)}
+.cs-hero .eyebrow{margin-bottom:var(--s4);color:var(--vectoris);opacity:.85}
+.cs-hero-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:var(--s12);align-items:center}
+.cs-num{position:absolute;top:60px;right:-20px;font-family:var(--font-display);font-weight:500;
+  font-size:clamp(150px,26vw,340px);letter-spacing:-.04em;line-height:.8;color:#4A5268;opacity:.06;z-index:0;pointer-events:none}
+.cs-hero h1{font-family:var(--font-display);font-weight:400;letter-spacing:-.02em;line-height:1.1;
+  font-size:clamp(30px,4.2vw,52px);margin-bottom:var(--s6);position:relative;z-index:2;color:#4A5268}
+.cs-standfirst{font-size:clamp(15px,1.8vw,19px);color:var(--ink-soft);max-width:600px;position:relative;z-index:2;line-height:1.6}
+
+/* per-case colour echo (matches its folder on the home) */
+.tint-photon{--orb:linear-gradient(120deg,#B2E6F5,#587FA4 60%,#C9E4F1);--orb-b:linear-gradient(150deg,#EAF6FB,#C9E4F1 55%,#B2E6F5)}
+.tint-teal  {--orb:linear-gradient(120deg,#B4E1CB,#6FB89A 60%,#C9E4F1);--orb-b:linear-gradient(150deg,#E1F5EE,#B4E1CB 55%,#9FE1CB)}
+.tint-coral {--orb:linear-gradient(120deg,#FCEBDD,#E79A63 65%,#F6C9AC);--orb-b:linear-gradient(150deg,#FDEFE8,#FCEBDD 55%,#F6C9AC)}
+.tint-prisme{--orb:linear-gradient(120deg,#E4D9EC,#8272A5 60%,#F9D0E2);--orb-b:linear-gradient(150deg,#F7EEF9,#E4D9EC 55%,#C9C0DC)}
+.tint-aurora{--orb:linear-gradient(120deg,#F9D0E2,#B85A82 65%,#E4D9EC);--orb-b:linear-gradient(150deg,#FDEAF1,#F9D0E2 55%,#F4C0D1)}
+
+/* per-case colour echo (soft, matches its folder on the home) */
+.tint-photon{--orb:radial-gradient(circle,rgba(178,230,245,.7),transparent 66%);--orb-b:radial-gradient(circle,rgba(201,228,241,.6),transparent 66%);--cs-hl:#4E82A8}
+.tint-teal  {--orb:radial-gradient(circle,rgba(180,225,203,.65),transparent 66%);--orb-b:radial-gradient(circle,rgba(159,225,203,.55),transparent 66%);--cs-hl:#4E9E7B}
+.tint-coral {--orb:radial-gradient(circle,rgba(252,235,221,.75),transparent 66%);--orb-b:radial-gradient(circle,rgba(246,201,172,.6),transparent 66%);--cs-hl:#D97A4E}
+.tint-prisme{--orb:radial-gradient(circle,rgba(226,217,236,.7),transparent 66%);--orb-b:radial-gradient(circle,rgba(249,208,226,.55),transparent 66%);--cs-hl:#8272A5}
+.tint-aurora{--orb:radial-gradient(circle,rgba(249,208,226,.72),transparent 66%);--orb-b:radial-gradient(circle,rgba(244,192,209,.55),transparent 66%);--cs-hl:#C05F86}
+
+/* title highlight, echoing the home hero */
+.cs-hero h1 .hl{font-style:italic;font-weight:500;
+  background:linear-gradient(100deg,#8272A5,#E8956B 90%);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* out-of-frame visual — soft diffuse blend, not a hard circle */
+.cs-visual{position:relative;height:400px}
+.cs-orb{position:absolute;border-radius:50%;filter:blur(48px);pointer-events:none;
+  animation:orbFloat 13s ease-in-out infinite}
+.cs-orb.a{width:70%;aspect-ratio:1;right:-6%;top:8%;background:var(--orb,radial-gradient(circle,rgba(178,230,245,.65),transparent 66%));opacity:.85}
+.cs-orb.b{width:52%;aspect-ratio:1;right:22%;bottom:2%;background:var(--orb-b,radial-gradient(circle,rgba(249,208,226,.6),transparent 66%));opacity:.75;animation-duration:10s;animation-direction:reverse}
+.cs-orb.c{width:40%;aspect-ratio:1;right:44%;top:34%;background:radial-gradient(circle,rgba(246,230,168,.4),transparent 66%);opacity:.6;animation-duration:16s}
+@keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-14px,-20px) scale(1.05)}}
+.cs-visual .chip{position:absolute;top:36%;left:0;z-index:3;background:rgba(255,255,255,0.42);backdrop-filter:blur(16px) saturate(1.2);
+  border:1px solid rgba(255,255,255,0.65);border-radius:12px;padding:10px 14px;box-shadow:var(--shadow-md);
+  font-family:var(--font-mono);font-size:10px;letter-spacing:.06em;color:var(--ink-soft)}
+.cs-visual .chip b{color:var(--ink-soft);font-weight:500;display:block;font-size:13px;font-family:var(--font-display)}
+@media(max-width:860px){
+  .cs-hero-grid{grid-template-columns:1fr}
+  .cs-visual{height:220px;order:-1}
+  .cs-num{font-size:clamp(120px,40vw,220px);top:80px}
+}
+
+/* stat strip — glass cards like the home */
+.cs-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s6);margin:var(--s6) 0 var(--s16);position:relative;z-index:1}
+.cs-stat{padding:var(--s8) var(--s6);position:relative;overflow:hidden;border-radius:var(--r-l);
+  background:rgba(255,255,255,0.42);backdrop-filter:blur(22px) saturate(1.3);-webkit-backdrop-filter:blur(22px) saturate(1.3);
+  border:1px solid rgba(255,255,255,0.65);box-shadow:0 20px 50px rgba(90,105,140,.14),inset 0 1px 0 rgba(255,255,255,.7);
+  transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s}
+.cs-stat:hover{transform:translateY(-5px);box-shadow:0 28px 60px rgba(90,105,140,.2)}
+.cs-stat .n{font-family:var(--font-display);font-weight:500;font-size:clamp(34px,4vw,46px);letter-spacing:-.03em;line-height:1;position:relative;color:#4A5268}
+.cs-stat .n .u{font-size:20px;color:var(--accent-deep)}
+.cs-stat .c{font-size:13.5px;color:var(--ink-soft);margin-top:var(--s3);position:relative}
+@media(max-width:720px){.cs-stats{grid-template-columns:1fr}}
+
+/* body: context + toggles */
+.cs-body{padding-bottom:var(--s24);display:grid;grid-template-columns:1fr 1.2fr;gap:var(--s12);align-items:start}
+.cs-context h2{font-family:var(--font-display);font-weight:500;font-size:22px;letter-spacing:-.02em;margin-bottom:var(--s4);color:#4A5268}
+.cs-context p{color:var(--ink-soft);font-size:15.5px;margin-bottom:var(--s4)}
+.cs-context .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:var(--s6)}
+.cs-context .tags span{font-family:var(--font-mono);font-size:10px;letter-spacing:.06em;padding:5px 10px;border-radius:var(--r-pill);
+  background:var(--surface-strong);border:1px solid var(--surface-brd);color:var(--ink-soft)}
+.cs-toggles{display:flex;flex-direction:column;gap:var(--s4)}
+.tg{border-radius:var(--r-m);border:1px solid var(--surface-brd);background:var(--surface);backdrop-filter:blur(var(--glass-blur));overflow:hidden}
+.tg summary{list-style:none;cursor:pointer;padding:var(--s6);display:flex;align-items:center;justify-content:space-between;
+  font-family:var(--font-display);font-weight:600;font-size:16px;transition:background .2s}
+.tg summary::-webkit-details-marker{display:none}
+.tg summary:hover{background:rgba(255,255,255,.4)}
+.tg summary .ic{width:26px;height:26px;border-radius:50%;border:1px solid var(--hairline);display:flex;align-items:center;justify-content:center;font-size:15px;color:var(--prisme);transition:transform .3s}
+.tg[open] summary .ic{transform:rotate(45deg)}
+.tg .content{padding:0 var(--s6) var(--s6)}
+.tg .content ul{list-style:none;display:flex;flex-direction:column;gap:var(--s3)}
+.tg .content li{font-size:14px;color:var(--ink-soft);padding-left:20px;position:relative;line-height:1.55}
+.tg .content li::before{content:"";position:absolute;left:0;top:8px;width:7px;height:7px;border-radius:50%;background:var(--accent-soft)}
+.tg.res .content li::before{background:var(--photon)}
+@media(max-width:860px){.cs-body{grid-template-columns:1fr}}
+
+/* prev/next nav between case studies */
+.cs-nav{border-top:1px solid var(--hairline);padding:var(--s12) 0 var(--s24);display:flex;justify-content:space-between;gap:var(--s4);flex-wrap:wrap}
+.cs-nav a{text-decoration:none;color:var(--ink);display:flex;flex-direction:column;gap:4px;transition:color .2s}
+.cs-nav a:hover{color:var(--accent-deep)}
+.cs-nav a .lbl{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint)}
+.cs-nav a .t{font-family:var(--font-display);font-weight:600;font-size:17px}
+.cs-nav a.next{text-align:right;margin-left:auto}
+@media(prefers-reduced-motion:reduce){.cs-orb{animation:none}}
+
+/* ============================================================
+   CASE STUDY CHART — branded proof visual
+   ============================================================ */
+.cs-chart{padding:var(--s8) var(--s8) var(--s6);margin:0 0 var(--s16);position:relative;overflow:hidden}
+.cs-chart .chart-head{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:var(--s3);margin-bottom:var(--s6)}
+.cs-chart h3{font-family:var(--font-display);font-weight:600;font-size:18px;letter-spacing:-.01em;color:var(--ink)}
+.cs-chart .chart-note{font-family:var(--font-mono);font-size:11px;color:var(--ink-faint)}
+.cs-chart svg{width:100%;height:auto;display:block}
+.cs-chart .legend-swatch{display:inline-block;width:16px;height:3px;border-radius:2px;vertical-align:middle;margin-right:6px}
+@media(max-width:640px){.cs-chart{padding:var(--s6) var(--s4)}}
+
+/* ============================================================
+   CASE STUDY GALLERY — before/after proof, framed screenshots
+   ============================================================ */
+.cs-gallery{padding:var(--s8);margin:0 0 var(--s16)}
+.cs-gallery .chart-head{margin-bottom:var(--s6)}
+.gal-pair{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4);margin-bottom:var(--s6)}
+.gal-item{border-radius:var(--r-m);overflow:hidden;border:1px solid var(--hairline);background:var(--bg-elev);box-shadow:var(--shadow-sm)}
+.gal-item img{width:100%;height:auto;display:block}
+.gal-tag{padding:10px 14px;font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  display:flex;align-items:center;gap:8px;border-top:1px solid var(--hairline)}
+.gal-tag.before{color:var(--ink-faint)}
+.gal-tag.after{color:var(--accent-deep);font-weight:500}
+.gal-tag .dot{width:6px;height:6px;border-radius:50%;background:currentColor}
+.gal-solo{border-radius:var(--r-m);overflow:hidden;border:1px solid var(--hairline);background:var(--bg-elev);box-shadow:var(--shadow-sm)}
+.gal-solo .cap{padding:12px 16px;font-size:13px;color:var(--ink-soft);border-top:1px solid var(--hairline)}
+.gal-solo .cap b{color:var(--ink);font-weight:600}
+/* dark code-editor frame, kept intentional rather than jarring */
+.gal-code{border-radius:var(--r-m);overflow:hidden;background:#1E1E2E;box-shadow:var(--shadow-md);border:1px solid rgba(0,0,0,.2)}
+.gal-code .chrome{display:flex;gap:6px;padding:12px 14px;background:#181825}
+.gal-code .chrome span{width:10px;height:10px;border-radius:50%}
+.gal-code .chrome span:nth-child(1){background:#F38BA8}
+.gal-code .chrome span:nth-child(2){background:#F9E2AF}
+.gal-code .chrome span:nth-child(3){background:#A6E3A1}
+.gal-code img{width:100%;height:auto;display:block}
+.gal-code .cap{padding:12px 16px;font-size:13px;color:var(--ink-soft);background:var(--bg-elev);border-top:1px solid var(--hairline)}
+.gal-code .cap b{color:var(--ink);font-weight:600}
+@media(max-width:720px){.gal-pair{grid-template-columns:1fr}}
+
+</style>
 </head>
 <body class="tint-photon">
 <div class="aura"><span class="a"></span><span class="b"></span><span class="c"></span></div>
@@ -20,7 +270,7 @@
     <div class="cs-num">01</div>
     <div class="cs-hero-grid">
       <div class="reveal">
-        <div class="eyebrow mk">Analytics · 2023–2026 · HubSpot CRM</div>
+        <div class="eyebrow mk">Analytics · HubSpot CRM · RetinAI</div>
         <h1>Building marketing where <span class="hl">none</span> existed — and proving it drives revenue</h1>
         <p class="cs-standfirst">When I joined in February 2023, there was no marketing function — no campaigns, no pipeline, no way to know what worked. I built it from zero, and instrumented it as I went: from 0% of revenue marketing-touched to 70%, in three years.</p>
       </div>
@@ -28,7 +278,7 @@
         <div class="cs-orb a"></div>
         <div class="cs-orb b"></div>
         <div class="cs-orb c"></div>
-        <div class="chip">SOURCED vs INFLUENCED<b>540 deals analysed</b></div>
+        <div class="chip">WIN RATE<b>Marketing-sourced ≈ sales-only</b></div>
       </div>
     </div>
   </div>
@@ -37,15 +287,95 @@
 <div class="wrap">
   <div class="cs-stats">
     <div class="cs-stat glass reveal"><div class="n">0→70<span class="u">%</span></div><div class="c">of closed-won revenue was marketing-touched in H1 2026 (sourced + influenced), up from 0% when I joined in February 2023</div></div>
-    <div class="cs-stat glass reveal"><div class="n">540</div><div class="c">deals analysed across sourced vs. influenced, pipeline vs. closed-won</div></div>
-    <div class="cs-stat glass reveal"><div class="n">−2.5<span class="u">mo</span></div><div class="c">marketing-touched deals close faster than sales-only (3.8 vs. 6.3 months)</div></div>
+    <div class="cs-stat glass reveal"><div class="n">17.5<span class="u">%</span></div><div class="c">win rate for marketing-sourced deals — vs. 21.9% for sales-only</div></div>
+    <div class="cs-stat glass reveal"><div class="n">2.5<span class="u">mo</span></div><div class="c">marketing-touched deals close 2.5 months faster than sales-only (3.8 vs. 6.3 months)</div></div>
+  </div>
+
+  <div class="cs-chart glass reveal">
+    <div class="chart-head">
+      <h3>Marketing's share of pipeline vs. closed-won revenue</h3>
+    </div>
+    <svg viewBox="0 0 960 450" role="img" aria-label="Line chart showing marketing's share of pipeline rising from 2% in 2022 to 70% of pipeline by 2025, while marketing's share of closed-won revenue follows about one year behind, reaching 70% by H1 2026.">
+      <!-- gridlines -->
+      <g stroke="rgba(90,105,140,.14)" stroke-width="1">
+        <line x1="80" y1="360" x2="920" y2="360"/>
+        <line x1="80" y1="326.25" x2="920" y2="326.25"/>
+        <line x1="80" y1="292.5" x2="920" y2="292.5"/>
+        <line x1="80" y1="258.75" x2="920" y2="258.75"/>
+        <line x1="80" y1="225" x2="920" y2="225"/>
+        <line x1="80" y1="191.25" x2="920" y2="191.25"/>
+        <line x1="80" y1="157.5" x2="920" y2="157.5"/>
+        <line x1="80" y1="123.75" x2="920" y2="123.75"/>
+        <line x1="80" y1="90" x2="920" y2="90"/>
+      </g>
+      <!-- y-axis labels -->
+      <g font-family="JetBrains Mono, monospace" font-size="12" fill="#9AA3B5" text-anchor="end">
+        <text x="68" y="364">0%</text>
+        <text x="68" y="330">10%</text>
+        <text x="68" y="296">20%</text>
+        <text x="68" y="262">30%</text>
+        <text x="68" y="229">40%</text>
+        <text x="68" y="195">50%</text>
+        <text x="68" y="161">60%</text>
+        <text x="68" y="128">70%</text>
+        <text x="68" y="94">80%</text>
+      </g>
+      <!-- x-axis labels -->
+      <g font-family="Space Grotesk, sans-serif" font-size="14" font-weight="500" fill="#3A4256" text-anchor="middle">
+        <text x="80" y="418">2022</text>
+        <text x="290" y="418">2023</text>
+        <text x="500" y="418">2024</text>
+        <text x="710" y="418">2025</text>
+        <text x="920" y="418">2026 (H1)</text>
+      </g>
+
+      <!-- pipeline line (blue) -->
+      <polyline points="80,353.25 290,326.25 500,306 710,184.5 920,228.375" fill="none" stroke="#587FA4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- closed-won line (accent) -->
+      <polyline points="80,360 290,360 500,349.875 710,238.5 920,123.75" fill="none" stroke="#E8956B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+      <!-- pipeline dots + labels -->
+      <g fill="#587FA4">
+        <circle cx="80" cy="353.25" r="6"/><circle cx="290" cy="326.25" r="6"/><circle cx="500" cy="306" r="6"/><circle cx="710" cy="184.5" r="6"/><circle cx="920" cy="228.375" r="6"/>
+      </g>
+      <g font-family="Space Grotesk, sans-serif" font-size="15" font-weight="600" fill="#587FA4" text-anchor="middle">
+        <text x="80" y="335">2%</text>
+        <text x="290" y="308">10%</text>
+        <text x="500" y="288">16%</text>
+        <text x="710" y="166">52%</text>
+        <text x="920" y="210">39%</text>
+      </g>
+
+      <!-- closed-won dots + labels -->
+      <g fill="#D97A4E">
+        <circle cx="80" cy="360" r="6"/><circle cx="290" cy="360" r="6"/><circle cx="500" cy="349.875" r="6"/><circle cx="710" cy="238.5" r="6"/><circle cx="920" cy="123.75" r="6"/>
+      </g>
+      <g font-family="Space Grotesk, sans-serif" font-size="15" font-weight="600" fill="#D97A4E" text-anchor="middle">
+        <text x="80" y="383">0%</text>
+        <text x="290" y="383">0%</text>
+        <text x="500" y="373">3%</text>
+        <text x="710" y="262">36%</text>
+        <text x="920" y="106">70%</text>
+      </g>
+
+      <!-- legend -->
+      <g font-family="Space Grotesk, sans-serif">
+        <rect x="80" y="8" width="16" height="3" rx="1.5" fill="#587FA4"/>
+        <text x="104" y="16" font-size="14" font-weight="600" fill="#3A4256">Pipeline · marketing share</text>
+        <text x="104" y="32" font-size="12" font-style="italic" fill="#6B7488">Sourced + Influenced</text>
+
+        <rect x="420" y="8" width="16" height="3" rx="1.5" fill="#E8956B"/>
+        <text x="444" y="16" font-size="14" font-weight="600" fill="#3A4256">Closed-won · marketing share</text>
+        <text x="444" y="32" font-size="12" font-style="italic" fill="#6B7488">Sourced + Influenced</text>
+      </g>
+    </svg>
   </div>
 
   <div class="cs-body">
     <div class="cs-context reveal">
       <h2>The challenge</h2>
       <p>There was no marketing function to inherit — no campaigns running, no pipeline being tracked, no way to know what worked once I started building. I had to create the activity and the way to measure it at the same time, or risk building on guesswork.</p>
-      <p>As the function grew, I built an attribution framework in HubSpot that separates <em>sourced</em> (marketing created the deal) from <em>influenced</em> (marketing touched an existing account), tracks pipeline and closed-won on separate timelines, and accounts for the ~1-year lag between the two — so every euro I spent could be justified by what it produced.</p>
+      <p>As the function grew, I built an attribution framework in HubSpot that separates <em>sourced</em> (marketing created the deal) from <em>influenced</em> (marketing touched an existing account), and tracks pipeline and closed-won on separate timelines, so every CHF I spent could be justified by what it produced.</p>
       <div class="tags">
         <span>Revenue analytics</span><span>Attribution modelling</span><span>HubSpot</span><span>Board reporting</span>
       </div>
