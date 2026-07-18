@@ -22,13 +22,13 @@
       <div class="reveal">
         <div class="eyebrow mk">RevOps &amp; GTM · 2023–2025</div>
         <h1>The funnel <span class="hl">underneath</span> the numbers</h1>
-        <p class="cs-standfirst">None of the pipeline growth was possible without the plumbing. I defined the lifecycle stages, built the automated workflows connecting marketing and sales, and ran the go-to-market for RetinAI's product launches.</p>
+        <p class="cs-standfirst">None of the pipeline growth was possible without the plumbing. HubSpot's lifecycle stages already existed — what didn't was a way to get every incoming lead into the right one. I built the routing workflows, trained the company to use them consistently, and ran the go-to-market for RetinAI's product launches.</p>
       </div>
       <div class="cs-visual reveal">
         <div class="cs-orb a"></div>
         <div class="cs-orb b"></div>
         <div class="cs-orb c"></div>
-        <div class="chip">LIFECYCLE · WORKFLOWS · GTM<b>Built in HubSpot, end-to-end</b></div>
+        <div class="chip">ROUTING · WORKFLOWS · GTM<b>Built in HubSpot, end-to-end</b></div>
       </div>
     </div>
   </div>
@@ -36,16 +36,68 @@
 
 <div class="wrap">
   <div class="cs-stats">
-    <div class="cs-stat glass reveal"><div class="n">8<span class="u"> stages</span></div><div class="c">full lifecycle model defined and rolled out in HubSpot</div></div>
+    <div class="cs-stat glass reveal"><div class="n">Workflows</div><div class="c">built to route every incoming lead to the right stage &amp; owner — plus company-wide training to use them consistently</div></div>
     <div class="cs-stat glass reveal"><div class="n">3</div><div class="c">launches — including Discovery (CE-marked + FDA-cleared) and Heidelberg AppWay</div></div>
     <div class="cs-stat glass reveal"><div class="n">+180<span class="u">%</span></div><div class="c">qualified demo requests, year-on-year, on the flagship launch</div></div>
+  </div>
+
+  <div class="cs-chart glass reveal">
+    <div class="chart-head">
+      <h3>The routing workflows — what actually didn't exist</h3>
+      <span class="chart-note">HubSpot's lifecycle stages were native. This wasn't.</span>
+    </div>
+    <svg viewBox="0 0 960 380" role="img" aria-label="Diagram showing three lead sources — website form, event registration, inbound contact — flowing into a routing workflow, which assigns the correct lifecycle stage, the correct owner, and sends a notification, with consistent definitions applied company-wide.">
+      <defs>
+        <marker id="arrowhead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M1,1 L9,5 L1,9 Z" fill="#B3A9CC"/>
+        </marker>
+      </defs>
+      <!-- connecting lines -->
+      <g stroke="#B3A9CC" stroke-width="2" fill="none" marker-end="url(#arrowhead)">
+        <path d="M260,72 L360,182"/>
+        <path d="M260,190 L372,190"/>
+        <path d="M260,308 L360,198"/>
+        <path d="M588,190 L692,72"/>
+        <path d="M588,190 L692,190"/>
+        <path d="M588,190 L692,308"/>
+      </g>
+
+      <!-- input boxes -->
+      <g font-family="Space Grotesk, sans-serif" font-size="15" font-weight="500" fill="#3A4256">
+        <rect x="60" y="40" width="200" height="64" rx="12" fill="#FDEAF1" stroke="#F4C0D1"/>
+        <text x="160" y="77" text-anchor="middle">Website form</text>
+        <rect x="60" y="158" width="200" height="64" rx="12" fill="#FDEAF1" stroke="#F4C0D1"/>
+        <text x="160" y="195" text-anchor="middle">Event registration</text>
+        <rect x="60" y="276" width="200" height="64" rx="12" fill="#FDEAF1" stroke="#F4C0D1"/>
+        <text x="160" y="313" text-anchor="middle">Inbound contact</text>
+      </g>
+
+      <!-- center box -->
+      <rect x="380" y="158" width="200" height="64" rx="14" fill="#C05F86"/>
+      <text x="480" y="196" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="16" font-weight="600" fill="#FFFFFF">Routing workflow</text>
+
+      <!-- output boxes -->
+      <g font-family="Space Grotesk, sans-serif" font-size="15" font-weight="500" fill="#3A4256">
+        <rect x="700" y="40" width="200" height="64" rx="12" fill="#F7EEF9" stroke="#E4D9EC"/>
+        <text x="800" y="68" text-anchor="middle">Right lifecycle</text>
+        <text x="800" y="88" text-anchor="middle">stage</text>
+        <rect x="700" y="158" width="200" height="64" rx="12" fill="#F7EEF9" stroke="#E4D9EC"/>
+        <text x="800" y="186" text-anchor="middle">Right owner</text>
+        <text x="800" y="206" text-anchor="middle">assigned</text>
+        <rect x="700" y="276" width="200" height="64" rx="12" fill="#F7EEF9" stroke="#E4D9EC"/>
+        <text x="800" y="313" text-anchor="middle">Notification sent</text>
+      </g>
+
+      <!-- bottom banner -->
+      <text x="480" y="365" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" letter-spacing="0.04em" fill="#6B7488">CONSISTENT DEFINITIONS &amp; STRUCTURE — TRAINED COMPANY-WIDE</text>
+    </svg>
   </div>
 
   <div class="cs-body">
     <div class="cs-context reveal">
       <h2>The challenge</h2>
       <p>The funnel had no shared definitions — marketing and sales disagreed on what a qualified lead even was, and hundreds of contacts sat untouched because no one owned them. I built the operational backbone from scratch.</p>
-      <p>This is the foundation the attribution model (01) runs on: without clean lifecycle stages and workflows, none of the revenue analytics would have been possible.</p>
+      <p>This is the foundation the attribution model (01) runs on: without consistent routing and shared definitions, none of the revenue analytics would have been possible.</p>
       <div class="tags">
         <span>RevOps</span><span>Lifecycle &amp; workflows</span><span>HubSpot</span><span>GTM</span><span>Sales enablement</span>
       </div>
@@ -56,7 +108,7 @@
         <summary>Strategy <span class="ic">+</span></summary>
         <div class="content">
           <ul>
-            <li>Built the HubSpot setup end-to-end myself: the 8-stage lifecycle (Subscriber → Evangelist), lead-status sub-stages, and the automated workflows routing every form submission to the right owner.</li>
+            <li>Built the lead-routing workflows myself — every incoming form submission, event registration or inbound contact automatically routed to the right HubSpot lifecycle stage and the right owner — then trained the wider company to use consistent definitions and structure.</li>
             <li>Partnered with our Product-Enabled Sales Manager to design an advanced, product-specific sales setup for Discovery for Clinics — automated MQL→SQL hand-overs, owner assignment, notifications, and a full activity flow from form submission to closed deal.</li>
             <li>Aligned marketing and sales on one funnel, surfacing previously overlooked leads (e.g. 160 dormant Pharma subscribers ready to route to sales).</li>
             <li>Ran GTM for launches: engaged KOLs for product testing and event presentations, and executed the campaigns behind 3 product launches, anchoring credibility on CE + FDA clearance.</li>
@@ -67,7 +119,7 @@
         <summary>Results <span class="ic">+</span></summary>
         <div class="content">
           <ul>
-            <li>Rolled out a lifecycle and workflow system that made the whole pipeline measurable — the foundation the attribution model runs on.</li>
+            <li>Rolled out lead-routing workflows and company-wide training that made the pipeline consistent and measurable — the foundation the attribution model runs on.</li>
             <li>Launched 3 products, including Discovery for Clinics (CE + FDA) and the RetinAI Apps via Heidelberg's AppWay.</li>
             <li>Grew qualified demo requests +180% year-on-year on the flagship launch.</li>
           </ul>

@@ -145,7 +145,7 @@ body{
 
 /* title highlight, echoing the home hero */
 .cs-hero h1 .hl{font-style:italic;font-weight:500;
-  background:linear-gradient(100deg,var(--cs-hl,var(--prisme)),var(--accent) 90%);-webkit-background-clip:text;background-clip:text;color:transparent}
+  background:linear-gradient(100deg,#8272A5,#E8956B 90%);-webkit-background-clip:text;background-clip:text;color:transparent}
 
 /* out-of-frame visual — soft diffuse blend, not a hard circle */
 .cs-visual{position:relative;height:400px}
@@ -207,3 +207,52 @@ body{
 .cs-nav a .t{font-family:var(--font-display);font-weight:600;font-size:17px}
 .cs-nav a.next{text-align:right;margin-left:auto}
 @media(prefers-reduced-motion:reduce){.cs-orb{animation:none}}
+
+/* ============================================================
+   CASE STUDY CHART — branded proof visual
+   ============================================================ */
+.cs-chart{padding:var(--s8) var(--s8) var(--s6);margin:0 0 var(--s16);position:relative;overflow:hidden}
+.cs-chart .chart-head{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:var(--s3);margin-bottom:var(--s6)}
+.cs-chart h3{font-family:var(--font-display);font-weight:600;font-size:18px;letter-spacing:-.01em;color:var(--ink)}
+.cs-chart .chart-note{font-family:var(--font-mono);font-size:11px;color:var(--ink-faint)}
+.cs-chart svg{width:100%;height:auto;display:block}
+.cs-chart .legend-swatch{display:inline-block;width:16px;height:3px;border-radius:2px;vertical-align:middle;margin-right:6px}
+@media(max-width:640px){.cs-chart{padding:var(--s6) var(--s4)}}
+
+/* ============================================================
+   CASE STUDY GALLERY — before/after proof, framed screenshots
+   ============================================================ */
+.cs-gallery{padding:var(--s8);margin:0 0 var(--s16)}
+.cs-gallery .chart-head{margin-bottom:var(--s6)}
+.gal-pair{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4);margin-bottom:var(--s6)}
+.gal-item{border-radius:var(--r-m);overflow:hidden;border:1px solid var(--hairline);background:var(--bg-elev);box-shadow:var(--shadow-sm)}
+.gal-item img{width:100%;height:auto;display:block}
+.gal-tag{padding:10px 14px;font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  display:flex;align-items:center;gap:8px;border-top:1px solid var(--hairline)}
+.gal-tag.before{color:var(--ink-faint)}
+.gal-tag.after{color:var(--accent-deep);font-weight:500}
+.gal-tag .dot{width:6px;height:6px;border-radius:50%;background:currentColor}
+.gal-solo{border-radius:var(--r-m);overflow:hidden;border:1px solid var(--hairline);background:var(--bg-elev);box-shadow:var(--shadow-sm)}
+.gal-solo .cap{padding:12px 16px;font-size:13px;color:var(--ink-soft);border-top:1px solid var(--hairline)}
+.gal-solo .cap b{color:var(--ink);font-weight:600}
+/* dark code-editor frame, kept intentional rather than jarring */
+.gal-code{border-radius:var(--r-m);overflow:hidden;background:#1E1E2E;box-shadow:var(--shadow-md);border:1px solid rgba(0,0,0,.2)}
+.gal-code .chrome{display:flex;gap:6px;padding:12px 14px;background:#181825}
+.gal-code .chrome span{width:10px;height:10px;border-radius:50%}
+.gal-code .chrome span:nth-child(1){background:#F38BA8}
+.gal-code .chrome span:nth-child(2){background:#F9E2AF}
+.gal-code .chrome span:nth-child(3){background:#A6E3A1}
+.gal-code img{width:100%;height:auto;display:block}
+.gal-code .cap{padding:12px 16px;font-size:13px;color:var(--ink-soft);background:var(--bg-elev);border-top:1px solid var(--hairline)}
+.gal-code .cap b{color:var(--ink);font-weight:600}
+@media(max-width:720px){.gal-pair{grid-template-columns:1fr}}
+
+/* testimonial-style centered card for third-party proof (e.g. LinkedIn posts) */
+.gal-testimonial{display:flex;justify-content:center;gap:var(--s6);align-items:flex-start;flex-wrap:wrap}
+.gal-testimonial .shot{max-width:300px;border-radius:var(--r-m);overflow:hidden;border:1px solid var(--hairline);box-shadow:var(--shadow-md);flex-shrink:0}
+.gal-testimonial .shot img{width:100%;height:auto;display:block}
+.gal-testimonial .note{max-width:340px;padding-top:var(--s4)}
+.gal-testimonial .note .kicker{font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--prisme);margin-bottom:var(--s3)}
+.gal-testimonial .note p{font-size:14.5px;color:var(--ink-soft);line-height:1.6}
+.gal-testimonial .note p b{color:var(--ink);font-weight:600}
+@media(max-width:640px){.gal-testimonial{flex-direction:column;align-items:center}}
