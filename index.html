@@ -72,11 +72,9 @@
 /* full-bleed stage so tilted tiles have room; no visible box */
 .slider-shell{position:relative;margin:0 calc(50% - 50vw);padding:0}
 .folders{display:flex;gap:44px;overflow-x:auto;padding:70px max(24px,calc(50vw - 560px)) 80px;
-  scroll-snap-type:none;-webkit-overflow-scrolling:touch;scrollbar-width:none;cursor:grab;
+  scroll-snap-type:none;-webkit-overflow-scrolling:touch;scrollbar-width:none;
   perspective:1600px;perspective-origin:50% 50%}
 .folders::-webkit-scrollbar{display:none}
-.folders.dragging{cursor:grabbing}
-.folders.dragging .folder{pointer-events:none}
 
 /* arrow controls + progress */
 .slider-ctrl{display:flex;gap:10px;align-items:center}
@@ -449,15 +447,6 @@ function applyTilt(){
     f.style.setProperty('--tz',tz.toFixed(0)+'px');
   });
 }
-
-// drag to scroll
-let down=false,startX=0,startL=0,moved=0;
-track.addEventListener('pointerdown',(e)=>{down=true;moved=0;startX=e.clientX;startL=track.scrollLeft;track.classList.add('dragging');track.setPointerCapture(e.pointerId);});
-track.addEventListener('pointermove',(e)=>{if(!down)return;const dx=e.clientX-startX;moved+=Math.abs(dx);track.scrollLeft=startL-dx;applyTilt();});
-const endDrag=()=>{down=false;track.classList.remove('dragging');};
-track.addEventListener('pointerup',endDrag);
-track.addEventListener('pointercancel',endDrag);
-folders.forEach(f=>f.addEventListener('click',(e)=>{if(moved>8)e.preventDefault();}));
 
 updateSlider();applyTilt();
 window.addEventListener('resize',()=>{updateSlider();applyTilt();});
