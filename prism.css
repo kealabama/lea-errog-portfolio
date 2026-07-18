@@ -211,7 +211,7 @@ body{
 /* ============================================================
    CASE STUDY CHART — branded proof visual
    ============================================================ */
-.cs-chart{padding:var(--s8) var(--s8) var(--s6);margin:0 0 var(--s16);position:relative;overflow:hidden}
+.cs-chart{padding:var(--s8) var(--s8) var(--s6);margin:0 0 var(--s24);position:relative;overflow:hidden}
 .cs-chart .chart-head{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:var(--s3);margin-bottom:var(--s6)}
 .cs-chart h3{font-family:var(--font-display);font-weight:600;font-size:18px;letter-spacing:-.01em;color:var(--ink)}
 .cs-chart .chart-note{font-family:var(--font-mono);font-size:11px;color:var(--ink-faint)}
@@ -222,10 +222,10 @@ body{
 /* ============================================================
    CASE STUDY GALLERY — before/after proof, framed screenshots
    ============================================================ */
-.cs-gallery{padding:var(--s8);margin:0 0 var(--s16)}
+.cs-gallery{padding:var(--s8);margin:0 0 var(--s24)}
 .cs-gallery .chart-head{margin-bottom:var(--s6)}
-.gal-pair{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4);margin-bottom:var(--s6)}
-.gal-item{border-radius:var(--r-m);overflow:hidden;border:1px solid var(--hairline);background:var(--bg-elev);box-shadow:var(--shadow-sm)}
+.gal-pair{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4);margin-bottom:var(--s6);min-width:0}
+.gal-item{min-width:0;border-radius:var(--r-m);overflow:hidden;border:1px solid var(--hairline);background:var(--bg-elev);box-shadow:var(--shadow-sm)}
 .gal-item img{width:100%;height:auto;display:block}
 .gal-tag{padding:10px 14px;font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
   display:flex;align-items:center;gap:8px;border-top:1px solid var(--hairline)}
@@ -249,6 +249,9 @@ body{
 
 /* testimonial-style centered card for third-party proof (e.g. LinkedIn posts) */
 .gal-testimonial{display:flex;justify-content:center;gap:var(--s6);align-items:flex-start;flex-wrap:wrap}
+.cs-gallery.compact{max-width:640px;margin-left:auto;margin-right:auto}
+.cs-gallery.compact .gal-pair{grid-template-columns:1fr 1fr;max-width:640px}
+.cs-gallery.compact .gal-testimonial .shot{max-width:200px}
 .gal-testimonial .shot{max-width:300px;border-radius:var(--r-m);overflow:hidden;border:1px solid var(--hairline);box-shadow:var(--shadow-md);flex-shrink:0}
 .gal-testimonial .shot img{width:100%;height:auto;display:block}
 .gal-testimonial .note{max-width:340px;padding-top:var(--s4)}
