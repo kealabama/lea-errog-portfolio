@@ -1,2 +1,2 @@
 # lea-errog-portfolio
-Léa Errog's - Sr. Digital Manager
+Léa Errog's - Sr. Brand Marketing Manager
