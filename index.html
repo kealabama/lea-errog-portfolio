@@ -1,560 +1,466 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Léa Errog — Marketing Lead, Deeptech & MedTech</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --cream: #F3EDE2;
-      --cream-mid: #EDE5D7;
-      --ink: #1A1613;
-      --copper: #B5562C;
-      --sage: #5F7A65;
-      --mist: #E6DFD2;
-      --warm-grey: #948C82;
-    }
-    *, *::before, *::after { box-sizing:border-box;margin:0;padding:0; }
-    html { scroll-behavior:smooth; }
-    body { background-color:var(--cream);color:var(--ink);font-family:'Outfit',sans-serif;font-weight:300;overflow-x:hidden;cursor:none; }
-    body::before { content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.6; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Léa Errog — Senior Brand Marketing Manager</title>
+<meta name="description" content="I build marketing functions that close the loop — from first touch to closed revenue. Deeptech & Health Tech marketing, Zürich.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="prism.css">
+<style>
+/* ---------- HERO : text directly on rosy gradient ---------- */
+.hero{position:relative;
+  padding:150px var(--s6) 0;overflow:visible;text-align:center}
+.hero-top{position:relative}
+.hero-bg{position:absolute;top:-150px;left:calc(-1 * var(--s6));right:calc(-1 * var(--s6));bottom:120px;z-index:0;pointer-events:none;
+  background:radial-gradient(160% 130% at 78% 8%,rgba(252,235,221,.5),transparent 60%),
+             radial-gradient(140% 120% at 8% 78%,rgba(249,208,226,.4),transparent 60%),
+             radial-gradient(150% 140% at 50% 26%,rgba(226,217,236,.35),transparent 65%),
+             linear-gradient(180deg,rgba(226,217,236,.14),rgba(237,241,244,.14))}
+.hero .wrap{padding:0;max-width:none;width:100%;display:flex;justify-content:center;position:relative;z-index:1}
 
-    /* CURSOR */
-    #cursor-dot { width:6px;height:6px;background:var(--ink);border-radius:50%;position:fixed;pointer-events:none;z-index:10000;transform:translate(-50%,-50%); }
-    #cursor-ring { width:30px;height:30px;border:1px solid var(--copper);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .25s,height .25s; }
-    .cursor-grow { width:52px!important;height:52px!important; }
+.hero-panel{position:relative;z-index:2;max-width:900px;width:100%;margin:0 auto;padding:var(--s6) var(--s8) var(--s4);text-align:center}
+.hero-panel .eyebrow{margin-bottom:var(--s6);display:inline-block;color:var(--vectoris);opacity:.85}
+.hero-panel h1{font-family:var(--font-display);font-weight:400;letter-spacing:-.02em;line-height:1.12;
+  font-size:clamp(28px,4vw,50px);margin-bottom:var(--s6);color:#4A5268}
+.hero-panel h1 .accent{font-style:italic;font-weight:500;
+  background:linear-gradient(100deg,var(--prisme),var(--accent) 70%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-panel p.lede{font-size:clamp(14px,1.6vw,17px);color:var(--ink-soft);max-width:560px;margin:0 auto var(--s8);font-weight:400;line-height:1.65}
+.hero-panel .who{display:flex;gap:var(--s8);justify-content:center;flex-wrap:wrap;
+  font-family:var(--font-mono);font-size:10.5px;letter-spacing:.03em;color:var(--ink-faint);
+  padding-top:var(--s6);border-top:1px solid rgba(90,105,140,.12)}
+.hero-panel .who div b{color:var(--ink-soft);font-weight:500;display:block;margin-top:3px;font-family:var(--font-body);font-size:12.5px}
+.hero-scroll{position:relative;z-index:1;padding:var(--s6) 0 var(--s12);text-align:center;
+  font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint);
+  display:flex;flex-direction:column;align-items:center;gap:8px}
+.hero-scroll .dot{width:5px;height:5px;border-radius:50%;background:var(--prisme);animation:scrolldot 1.8s ease-in-out infinite}
+@keyframes scrolldot{0%,100%{transform:translateY(0);opacity:.4}50%{transform:translateY(7px);opacity:1}}
 
-    /* NAV */
-    nav { position:fixed;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:28px 52px;z-index:100;transition:background .4s,box-shadow .4s,transform .4s cubic-bezier(.16,1,.3,1); }
-    nav.scrolled { background:rgba(243,237,226,.94);backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(26,22,19,.08); }
-    nav.nav-hidden { transform:translateY(-100%); }
-    .nav-logo { font-family:'Cormorant',serif;font-weight:400;font-size:1.05rem;letter-spacing:.04em;color:var(--ink);text-decoration:none; }
-    .nav-links { display:flex;gap:40px;list-style:none; }
-    .nav-links a { font-size:.71rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);text-decoration:none;position:relative;padding-bottom:2px; }
-    .nav-links a::after { content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--copper);transition:width .3s; }
-    .nav-links a:hover::after { width:100%; }
+@media(max-width:640px){
+  .hero-panel{padding:var(--s8) var(--s4)}
+  .hero-panel .who{flex-direction:column;gap:var(--s4)}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-scroll .dot{animation:none}
+}
 
-    /* HERO */
-    #hero { min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 52px 72px;position:relative;overflow:hidden; }
-    .hero-eyebrow { font-size:.69rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--copper);margin-bottom:32px;display:flex;align-items:center;gap:14px; }
-    .hero-eyebrow-line { display:inline-block;width:32px;height:1px;background:var(--copper); }
-    .hero-headline { font-family:'Cormorant',serif;font-weight:300;font-size:clamp(3.6rem,7.5vw,7rem);line-height:1.04;letter-spacing:-.015em;color:var(--ink);max-width:960px;margin-bottom:48px;overflow:hidden; }
-    .hero-headline-inner { display:block;transform:translateY(105%);animation:slideUp 1.15s cubic-bezier(.16,1,.3,1) .15s forwards; }
-    @keyframes slideUp { to{transform:translateY(0)} }
-    .hero-headline em { font-style:italic;color:var(--copper); }
-    .hero-headline-ghost { position:absolute;top:140px;right:52px;font-family:'Cormorant',serif;font-style:italic;font-weight:300;font-size:clamp(4rem,9vw,8.5rem);line-height:1;color:transparent;-webkit-text-stroke:1px rgba(26,22,19,.055);pointer-events:none;user-select:none;animation:fadeIn 1.8s ease .6s both; }
-    @keyframes fadeIn { from{opacity:0}to{opacity:1} }
-    .hero-bottom { display:flex;justify-content:space-between;align-items:flex-end;gap:40px; }
-    .hero-bio { max-width:560px; }
-    .hero-bio p { font-size:1rem;font-weight:300;line-height:1.8;color:var(--ink);opacity:.72;border-left:1px solid var(--copper);padding-left:20px;animation:fadeIn 1s ease .8s both; }
-    .hero-meta { text-align:right;animation:fadeIn 1s ease 1s both; }
-    .hero-meta-role { font-size:.82rem;font-weight:400;color:var(--ink);margin-bottom:10px; }
-    .hero-meta-item { font-size:.7rem;font-weight:300;letter-spacing:.1em;color:var(--warm-grey);margin-bottom:5px; }
-    .hero-meta-item strong { color:var(--ink);font-weight:400; }
-    .scroll-hint { display:flex;align-items:center;gap:12px;margin-top:44px;font-size:.67rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--warm-grey);animation:fadeIn 1s ease 1.2s both; }
-    .scroll-line { width:48px;height:1px;background:var(--warm-grey);overflow:hidden;position:relative; }
-    .scroll-line::after { content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:var(--copper);animation:lineSlide 2s ease-in-out infinite; }
-    @keyframes lineSlide { 0%{left:-100%}50%{left:0%}100%{left:100%} }
+/* ---------- HEADLINE STAT STRIP : floating liquid-glass cards ---------- */
+.headline-strip{padding:var(--s8) 0 0;position:relative;z-index:1}
+.hs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s6)}
+.hs{text-align:center;padding:var(--s12) var(--s6);border-radius:var(--r-l);
+  background:rgba(255,255,255,0.42);backdrop-filter:blur(22px) saturate(1.3);-webkit-backdrop-filter:blur(22px) saturate(1.3);
+  border:1px solid rgba(255,255,255,0.65);
+  box-shadow:0 20px 50px rgba(90,105,140,.16),inset 0 1px 0 rgba(255,255,255,.7);
+  transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s}
+.hs:hover{transform:translateY(-6px);box-shadow:0 30px 66px rgba(90,105,140,.22),inset 0 1px 0 rgba(255,255,255,.8)}
+.hs:nth-child(2){transform:translateY(-18px)}
+.hs:nth-child(2):hover{transform:translateY(-24px)}
+.hs .n{font-family:var(--font-display);font-weight:500;font-size:clamp(42px,5.2vw,60px);letter-spacing:-.03em;line-height:1;color:#4A5268}
+.hs .n .u{font-size:24px;color:var(--accent-deep)}
+.hs .c{font-family:var(--font-mono);font-size:12.5px;letter-spacing:.03em;color:var(--ink-soft);margin-top:var(--s4)}
+@media(max-width:640px){.hs-grid{grid-template-columns:1fr;gap:var(--s4)}.hs:nth-child(2){transform:none}}
 
-    /* MARQUEE */
-    .marquee-strip { background:var(--ink);padding:14px 0;overflow:hidden;display:flex; }
-    .marquee-track { display:flex;animation:marquee 30s linear infinite;white-space:nowrap; }
-    .marquee-item { font-family:'Cormorant',serif;font-style:italic;font-size:1rem;font-weight:300;letter-spacing:.02em;padding:0 30px;color:var(--cream); }
-    .marquee-dot { color:var(--copper);font-style:normal; }
-    @keyframes marquee { from{transform:translateX(0)}to{transform:translateX(-50%)} }
+/* ---------- FOLDER SLIDER ---------- */
+.work{padding:var(--s16) 0 var(--s24);position:relative}
+.work-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:var(--s8);gap:var(--s6);flex-wrap:wrap}
+.work-head h2{font-family:var(--font-display);font-weight:600;letter-spacing:-.025em;font-size:clamp(26px,3.4vw,40px);margin-top:var(--s3)}
+.work-head p{color:var(--ink-soft);font-size:15px;max-width:360px}
+.slider-hint{font-family:var(--font-mono);font-size:11px;color:var(--ink-faint);display:flex;align-items:center;gap:8px}
 
-    /* ABOUT */
-    #about { padding:88px 52px;display:grid;grid-template-columns:240px 1fr 1fr;gap:60px;align-items:start;border-bottom:1px solid rgba(26,22,19,.1); }
-    .section-eyebrow { display:flex;align-items:center;gap:14px; }
-    .section-number { font-size:.66rem;font-weight:400;letter-spacing:.18em;color:var(--copper); }
-    .section-rule { width:40px;height:1px;background:var(--copper);opacity:.5; }
-    .section-label { font-size:.66rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--warm-grey); }
-    .about-text { font-size:.95rem;font-weight:300;line-height:1.82;color:var(--ink);opacity:.78; }
-    .about-superpowers { display:flex;flex-direction:column; }
-    .superpower-item { padding:18px 0;border-bottom:1px solid rgba(26,22,19,.1);display:flex;align-items:flex-start;gap:16px; }
-    .superpower-icon { width:6px;height:6px;border-radius:50%;background:var(--copper);margin-top:7px;flex-shrink:0; }
-    .superpower-name { font-family:'Cormorant',serif;font-size:1.1rem;font-weight:400;color:var(--ink);display:block;margin-bottom:2px; }
-    .superpower-desc { font-size:.78rem;font-weight:300;color:var(--warm-grey);line-height:1.55; }
+/* full-bleed stage so tilted tiles have room; no visible box */
+.slider-shell{position:relative;margin:0 calc(50% - 50vw);padding:0}
+.folders{display:flex;gap:44px;overflow-x:auto;padding:70px max(24px,calc(50vw - 560px)) 80px;
+  scroll-snap-type:none;-webkit-overflow-scrolling:touch;scrollbar-width:none;cursor:grab;
+  perspective:1600px;perspective-origin:50% 50%}
+.folders::-webkit-scrollbar{display:none}
+.folders.dragging{cursor:grabbing}
+.folders.dragging .folder{pointer-events:none}
 
-    /* WORK INTRO */
-    #work-intro { padding:100px 52px 0;display:grid;grid-template-columns:1fr 1.6fr;gap:80px;align-items:end; }
-    .work-heading { font-family:'Cormorant',serif;font-size:clamp(2.4rem,4vw,3.4rem);font-weight:400;line-height:1.15;color:var(--ink); }
-    .work-heading em { font-style:italic;color:var(--copper); }
-    .work-subtext { font-size:.95rem;font-weight:300;line-height:1.8;color:var(--ink);opacity:.68; }
+/* arrow controls + progress */
+.slider-ctrl{display:flex;gap:10px;align-items:center}
+.sc-btn{width:44px;height:44px;border-radius:50%;border:1px solid var(--surface-brd);
+  background:var(--surface-strong);backdrop-filter:blur(12px);color:var(--ink);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;font-size:17px;transition:all .2s;box-shadow:var(--shadow-sm)}
+.sc-btn:hover{border-color:var(--prisme);color:var(--prisme);transform:translateY(-1px)}
+.sc-btn:disabled{opacity:.35;cursor:default;transform:none}
+.slider-progress{height:4px;width:120px;background:var(--hairline);border-radius:2px;overflow:hidden;margin-left:4px}
+.slider-progress .bar{height:100%;width:20%;border-radius:2px;background:linear-gradient(90deg,var(--prisme),var(--accent));transition:width .25s,margin-left .25s}
 
-    /* ── PROJECT LIST — open editorial, no tile backgrounds ── */
-    #projects { padding:0 52px 120px; }
+/* ---- the folder itself ---- */
+.folder{scroll-snap-align:center;flex:0 0 330px;text-decoration:none;color:var(--ink);position:relative;
+  transform-style:preserve-3d;will-change:transform;
+  transition:transform .5s cubic-bezier(.2,.8,.2,1);transform:rotateY(var(--ry,0deg)) rotateX(var(--rx,0deg)) translateZ(var(--tz,0px))}
 
-    .project-entry {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      border-top: 1px solid rgba(26,22,19,.12);
-      padding: 80px 0;
-      text-decoration: none;
-      color: inherit;
-      position: relative;
-    }
-    .projects-end-rule { border-top:1px solid rgba(26,22,19,.12); }
+/* folder silhouette: a tab that sits ON TOP, then the body, both same frosted material */
+.folder .tab{height:30px;width:150px;margin-left:0;position:relative;z-index:2;
+  border-radius:14px 20px 0 0;top:1px;
+  background:rgba(255,255,255,0.34);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);
+  border:1px solid rgba(255,255,255,0.6);border-bottom:none;
+  display:flex;align-items:center;padding:0 16px;
+  font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--vectoris);
+  box-shadow:0 -1px 8px rgba(90,105,140,.06);
+  clip-path:polygon(0 0, 78% 0, 100% 55%, 100% 100%, 0 100%)}
+.folder .body{border-radius:2px 16px 16px 16px;padding:var(--s6);min-height:320px;
+  background:rgba(255,255,255,0.30);backdrop-filter:blur(24px) saturate(1.25);-webkit-backdrop-filter:blur(24px) saturate(1.25);
+  border:1px solid rgba(255,255,255,0.6);
+  box-shadow:0 24px 60px rgba(90,105,140,.16),inset 0 1px 0 rgba(255,255,255,.7);
+  display:flex;flex-direction:column;position:relative;overflow:hidden;
+  transition:box-shadow .45s,border-color .45s}
+/* frosted specular blob inside — soft, diffuse, one tint per folder */
+.folder .body::before{content:"";position:absolute;width:72%;height:56%;left:12%;bottom:8%;border-radius:50%;
+  background:var(--halo,radial-gradient(circle at 40% 40%,rgba(249,208,226,.5),rgba(130,114,165,.28) 55%,transparent 75%));
+  filter:blur(26px);opacity:.7;pointer-events:none;transition:opacity .45s,transform .6s}
+.folder.f-photon{--halo:radial-gradient(circle at 40% 40%,rgba(88,127,164,.34),rgba(178,230,245,.30) 55%,transparent 76%)}
+.folder.f-teal  {--halo:radial-gradient(circle at 40% 40%,rgba(78,158,123,.30),rgba(180,225,203,.30) 55%,transparent 76%)}
+.folder.f-coral {--halo:radial-gradient(circle at 40% 40%,rgba(217,122,78,.30),rgba(252,235,221,.42) 55%,transparent 76%)}
+.folder.f-prisme{--halo:radial-gradient(circle at 40% 40%,rgba(130,114,165,.32),rgba(226,217,236,.38) 55%,transparent 76%)}
+.folder.f-aurora{--halo:radial-gradient(circle at 40% 40%,rgba(192,95,134,.28),rgba(249,208,226,.40) 55%,transparent 76%)}
+.folder.f-photon .tab,.folder.f-photon .num{color:var(--vectoris)}
+.folder.f-teal .tab,.folder.f-teal .num{color:#3F8E6E}
+.folder.f-coral .tab,.folder.f-coral .num{color:var(--accent-deep)}
+.folder.f-prisme .tab,.folder.f-prisme .num{color:var(--prisme)}
+.folder.f-aurora .tab,.folder.f-aurora .num{color:#B85A82}
 
-    /* Alternate flip */
-    .project-entry:nth-child(even) .pv-col { order:2; padding-left:64px; padding-right:0; }
-    .project-entry:nth-child(even) .pt-col { order:1; padding-right:64px; padding-left:0; }
+/* per-folder colour identity — subtle transparent tints */
+.folder:nth-child(1) .body::before{background:radial-gradient(circle at 40% 40%,rgba(178,230,245,.55),rgba(88,127,164,.26) 55%,transparent 75%)}
+.folder:nth-child(1) .tab{color:var(--vectoris)}
+.folder:nth-child(2) .body::before{background:radial-gradient(circle at 40% 40%,rgba(178,230,245,.5),rgba(130,114,165,.24) 55%,transparent 75%)}
+.folder:nth-child(2) .tab{color:#5a8bb0}
+.folder:nth-child(3) .body::before{background:radial-gradient(circle at 40% 40%,rgba(230,217,236,.6),rgba(130,114,165,.3) 55%,transparent 75%)}
+.folder:nth-child(3) .tab{color:var(--prisme)}
+.folder:nth-child(4) .body::before{background:radial-gradient(circle at 40% 40%,rgba(249,208,226,.58),rgba(215,122,78,.24) 55%,transparent 75%)}
+.folder:nth-child(4) .tab{color:#c77fa0}
+.folder:nth-child(5) .body::before{background:radial-gradient(circle at 40% 40%,rgba(252,235,221,.62),rgba(231,154,99,.28) 55%,transparent 75%)}
+.folder:nth-child(5) .tab{color:var(--accent-deep)}
 
-    /* Hover: title gets underline */
-    .proj-title-text { position:relative;display:inline; }
-    .proj-title-text::after { content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--ink);transition:width .5s cubic-bezier(.16,1,.3,1); }
-    .project-entry:hover .proj-title-text::after { width:100%; }
+.folder .num{font-family:var(--font-mono);font-size:12px;color:var(--prisme);position:relative}
+.folder h3{font-family:var(--font-display);font-weight:600;font-size:21px;letter-spacing:-.02em;margin:var(--s3) 0 var(--s3);position:relative;line-height:1.15}
+.folder .desc{font-size:13.5px;color:var(--ink-soft);position:relative;flex:1}
+.folder .foot{display:flex;align-items:flex-end;justify-content:space-between;margin-top:var(--s6);position:relative}
+.folder .headline-stat{font-family:var(--font-display);font-weight:600;font-size:26px;letter-spacing:-.03em;line-height:1}
+.folder .headline-stat .u{font-size:13px;color:var(--accent-deep)}
+.folder .headline-stat .cap{display:block;font-family:var(--font-mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);margin-top:4px;font-weight:400}
+.folder .go{width:40px;height:40px;border-radius:50%;background:var(--go-bg,var(--ink));color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;transition:all .3s;position:relative}
+.folder.f-photon{--go-bg:var(--vectoris)}
+.folder.f-teal{--go-bg:#4E9E7B}
+.folder.f-coral{--go-bg:var(--accent-deep)}
+.folder.f-prisme{--go-bg:var(--prisme)}
+.folder.f-aurora{--go-bg:#C05F86}
+.folder .arrow-corner{position:absolute;top:16px;right:18px;color:var(--ink-faint);font-size:16px;opacity:.5;transition:all .3s;z-index:2}
 
-    /* Visual column */
-    .pv-col { display:flex;align-items:center;justify-content:center;padding-right:64px; }
-    .project-frame { width:100%;aspect-ratio:4/3;position:relative;overflow:hidden; }
+/* hover: lift toward viewer, brighten frost, arrow reacts */
+.folder:hover{transform:rotateY(var(--ry,0deg)) rotateX(0deg) translateZ(40px) translateY(-6px)}
+.folder:hover .body{box-shadow:0 34px 80px rgba(90,105,140,.24),inset 0 1px 0 rgba(255,255,255,.85);border-color:rgba(255,255,255,.85)}
+.folder:hover .body::before{opacity:1;transform:scale(1.08)}
+.folder:hover .go{transform:rotate(-45deg) scale(1.12);filter:brightness(1.08)}
+.folder:hover .arrow-corner{opacity:1;color:var(--accent-deep);transform:translate(2px,-2px)}
 
-    /* ── Pipeline chart art ── */
-    .vf-pipeline { background:var(--cream-mid);width:100%;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:36px 32px;position:relative; }
-    .vf-label { font-size:.58rem;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:var(--warm-grey);margin-bottom:24px;max-width:200px;line-height:1.5; }
-    .vf-joined { position:absolute;top:28px;right:28px;font-family:'Cormorant',serif;font-style:italic;font-size:.82rem;color:var(--warm-grey);text-align:right;border-right:1px solid var(--copper);padding-right:10px;line-height:1.5; }
-    .vf-bars { display:flex;align-items:flex-end;gap:12px;height:130px; }
-    .vf-col { display:flex;flex-direction:column;align-items:center;gap:6px;flex:1; }
-    .vf-bar-wrap { width:100%;height:110px;display:flex;align-items:flex-end; }
-    .vf-bar { width:100%;border-radius:1px 1px 0 0; }
-    .vf-b22 { height:15%;background:rgba(181,86,44,.18); }
-    .vf-b23 { height:57%;background:rgba(181,86,44,.45); }
-    .vf-b24 { height:100%;background:var(--copper); }
-    .vf-val { font-family:'Cormorant',serif;font-size:.78rem;font-weight:400;color:var(--copper);text-align:center;line-height:1.2; }
-    .vf-yr { font-size:.58rem;font-weight:400;letter-spacing:.06em;color:var(--warm-grey);text-align:center; }
+@media(prefers-reduced-motion:reduce){
+  .folder{transition:none;transform:none!important}
+  .folder:hover{transform:translateY(-6px)!important}
+  .folder .body::before{transition:none}
+}
 
-    /* ── Brand art ── */
-    .vf-brand { background:var(--cream);width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;padding:36px 32px;border:1px solid rgba(26,22,19,.08);position:relative; }
-    .vfb-ghost { position:absolute;top:16px;right:20px;font-family:'Cormorant',serif;font-weight:300;font-size:3.5rem;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(26,22,19,.06); }
-    .vfb-wm { font-family:'Cormorant',serif;font-weight:300;font-size:2.6rem;letter-spacing:-.02em;color:rgba(26,22,19,.14);display:block;border-bottom:1px solid rgba(181,86,44,.2);padding-bottom:14px;margin-bottom:14px; }
-    .vfb-sub { font-family:'Cormorant',serif;font-style:italic;font-size:.85rem;color:rgba(181,86,44,.5);display:block;margin-bottom:24px; }
-    .vfb-bars { display:flex;flex-direction:column;gap:8px; }
-    .vfb-bar { height:5px;border-radius:2px; }
-    .vfb-bar:nth-child(1){width:80%;background:rgba(181,86,44,.18);}
-    .vfb-bar:nth-child(2){width:55%;background:rgba(95,122,101,.18);}
-    .vfb-bar:nth-child(3){width:70%;background:rgba(148,140,130,.14);}
-    .vfb-palette { display:flex;gap:7px;margin-top:20px; }
-    .vfb-sw { width:24px;height:24px;border-radius:50%; }
 
-    /* ── Launch art ── */
-    .vf-launch { background:var(--cream-mid);width:100%;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:36px 32px;position:relative;overflow:hidden; }
-    .vfl-ghost { position:absolute;top:16px;right:20px;font-family:'Cormorant',serif;font-weight:300;font-size:3.5rem;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(26,22,19,.06); }
-    .vfl-label { font-size:.58rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--warm-grey);margin-bottom:24px;max-width:200px;line-height:1.5; }
-    .vfl-title { font-family:'Cormorant',serif;font-weight:300;font-size:1.6rem;color:rgba(26,22,19,.55);line-height:1.25;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid rgba(181,86,44,.2); }
-    .vfl-grid { display:grid;grid-template-columns:1fr 1fr;gap:8px; }
-    .vfl-block { padding:12px;border:1px solid rgba(26,22,19,.08); }
-    .vfl-val { font-family:'Cormorant',serif;font-size:1.5rem;color:var(--copper);font-weight:300; }
-    .vfl-lbl { font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--warm-grey);margin-top:3px; }
+/* ---------- BEFORE RETINAI ---------- */
+.before{padding:var(--s8) 0 var(--s16)}
+.before h2{font-family:var(--font-display);font-weight:600;letter-spacing:-.025em;font-size:clamp(22px,3vw,32px);margin-top:var(--s3)}
+.before .intro{color:var(--ink-soft);font-size:15px;margin:var(--s3) 0 var(--s8);max-width:520px}
+.before-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s6)}
+.mini{padding:var(--s6);position:relative;overflow:hidden}
+.mini::before{content:"";position:absolute;inset:0;background:var(--iris-1);opacity:.18;pointer-events:none}
+.mini .role{font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--prisme);position:relative}
+.mini h4{font-family:var(--font-display);font-weight:600;font-size:19px;margin:var(--s2) 0 var(--s3);position:relative}
+.mini p{font-size:13.5px;color:var(--ink-soft);position:relative}
+.mini .stats{display:flex;gap:var(--s6);margin-top:var(--s4);position:relative}
+.mini .stats .s{font-family:var(--font-display);font-weight:600;font-size:20px;letter-spacing:-.02em}
+.mini .stats .s span{display:block;font-family:var(--font-mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);font-weight:400;margin-top:3px}
+@media(max-width:640px){.before-grid{grid-template-columns:1fr}}
 
-    /* ── Content/SEO art ── */
-    .vf-content { background:var(--cream-mid);width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;padding:36px 32px;gap:12px;border:1px solid rgba(26,22,19,.08);position:relative; }
-    .vfc-ghost { position:absolute;top:16px;right:20px;font-family:'Cormorant',serif;font-weight:300;font-size:3.5rem;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(26,22,19,.06); }
-    .vfc-row { display:flex;align-items:center;gap:10px; }
-    .vfc-tag { font-size:.56rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase;padding:3px 9px;border:1px solid rgba(181,86,44,.3);color:var(--copper);flex-shrink:0;width:60px;text-align:center; }
-    .vfc-track { flex:1;height:1px;background:rgba(26,22,19,.1);position:relative; }
-    .vfc-track::after { content:'';position:absolute;left:0;top:0;height:100%;background:var(--copper);opacity:.5; }
-    .vfc-t88::after{width:88%} .vfc-t70::after{width:70%} .vfc-t55::after{width:55%} .vfc-t80::after{width:80%}
-    .vfc-val { font-family:'Cormorant',serif;font-size:.88rem;color:var(--warm-grey);flex-shrink:0; }
-    .vfc-quote { margin-top:14px;padding-top:14px;border-top:1px solid rgba(26,22,19,.07);font-family:'Cormorant',serif;font-style:italic;font-size:.92rem;font-weight:300;line-height:1.5;color:var(--ink);opacity:.3; }
+/* ---------- CONTACT ---------- */
+.contact{padding:var(--s8) 0 var(--s12)}
+.contact-card{padding:var(--s16) var(--s12);text-align:center;position:relative;overflow:hidden}
+.contact-card::before{content:"";position:absolute;inset:0;background:var(--iris-2);opacity:.28;pointer-events:none}
+.contact-card h2{font-family:var(--font-display);font-weight:600;letter-spacing:-.03em;font-size:clamp(28px,4.5vw,50px);position:relative;line-height:1.05}
+.contact-card p{color:var(--ink-soft);font-size:16px;margin:var(--s4) 0 var(--s8);position:relative}
+.contact-actions{display:flex;gap:var(--s3);justify-content:center;flex-wrap:wrap;position:relative}
 
-    /* Text column */
-    .pt-col { padding-left:64px;display:flex;flex-direction:column;justify-content:center; }
-    .proj-meta { display:flex;align-items:center;gap:12px;margin-bottom:18px; }
-    .proj-cat { font-size:.67rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--copper); }
-    .proj-dot { width:3px;height:3px;border-radius:50%;background:var(--warm-grey); }
-    .proj-year { font-size:.67rem;font-weight:300;letter-spacing:.1em;color:var(--warm-grey); }
-    h3.proj-title { font-family:'Cormorant',serif;font-size:clamp(1.7rem,2.6vw,2.3rem);font-weight:400;line-height:1.15;color:var(--ink);margin-bottom:22px;padding-bottom:18px;border-bottom:1px solid rgba(181,86,44,.2); }
-    .proj-desc { font-size:.9rem;font-weight:300;line-height:1.8;color:var(--ink);opacity:.7;border-left:2px solid rgba(181,86,44,.25);padding-left:16px;margin-bottom:28px; }
-
-    /* Impact block */
-    .proj-impact { display:flex;border:1px solid rgba(26,22,19,.1);margin-bottom:24px; }
-    .pil-col { padding:14px 12px;border-right:1px solid rgba(26,22,19,.1);display:flex;align-items:center; }
-    .pil-text { font-size:.56rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--warm-grey);writing-mode:vertical-rl;text-orientation:mixed;transform:rotate(180deg); }
-    .pim { padding:14px 18px;flex:1;display:flex;flex-direction:column;gap:7px; }
-    .pim-row { display:flex;align-items:baseline;gap:9px;font-size:.84rem;font-weight:300;color:var(--ink); }
-    .pim-val { font-family:'Cormorant',serif;font-size:1.4rem;font-weight:400;color:var(--copper);line-height:1; }
-    .pim-dot { width:3px;height:3px;border-radius:50%;background:var(--warm-grey);opacity:.5;flex-shrink:0; }
-
-    .proj-bottom { display:flex;align-items:center;justify-content:space-between; }
-    .proj-tags { display:flex;flex-wrap:wrap;gap:7px; }
-    .proj-tag { font-size:.59rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--warm-grey);border:1px solid rgba(148,140,130,.3);padding:4px 9px; }
-    .proj-cta { display:inline-flex;align-items:center;gap:10px;font-size:.68rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);transition:color .25s,gap .3s;flex-shrink:0; }
-    .project-entry:hover .proj-cta { color:var(--copper);gap:18px; }
-    .cta-arr { display:inline-block;width:24px;height:1px;background:currentColor;position:relative; }
-    .cta-arr::after { content:'';position:absolute;right:0;top:-3px;border-top:3px solid transparent;border-bottom:3px solid transparent;border-left:5px solid currentColor; }
-
-    /* CONTACT */
-    #contact { padding:120px 52px;position:relative;overflow:hidden;background:var(--ink); }
-    .contact-bg-text { position:absolute;right:-60px;bottom:-40px;font-family:'Cormorant',serif;font-style:italic;font-weight:300;font-size:clamp(8rem,18vw,16rem);line-height:1;color:transparent;-webkit-text-stroke:1px rgba(243,237,226,.04);pointer-events:none;user-select:none; }
-    .contact-inner { max-width:640px; }
-    .c-eyebrow { display:flex;align-items:center;gap:14px; }
-    .c-num { font-size:.66rem;font-weight:400;letter-spacing:.18em;color:var(--copper); }
-    .c-rule { width:40px;height:1px;background:var(--copper);opacity:.5; }
-    .c-lbl { font-size:.66rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:rgba(243,237,226,.4); }
-    .contact-heading { font-family:'Cormorant',serif;font-weight:300;font-size:clamp(2.6rem,5vw,4.8rem);line-height:1.1;color:var(--cream);margin:40px 0 52px; }
-    .contact-heading em { font-style:italic;color:var(--copper); }
-    .contact-links { display:flex;gap:32px;flex-wrap:wrap; }
-    .contact-link { display:inline-flex;align-items:center;gap:14px;font-size:.75rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--cream);text-decoration:none;transition:color .25s; }
-    .contact-link:hover { color:var(--copper); }
-    .cl-icon { width:42px;height:42px;border:1px solid rgba(243,237,226,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .25s,border-color .25s; }
-    .contact-link:hover .cl-icon { background:var(--copper);border-color:var(--copper); }
-    .cl-icon svg { width:16px;height:16px;fill:currentColor; }
-
-    footer { border-top:1px solid rgba(26,22,19,.1);padding:28px 52px;display:flex;justify-content:space-between;align-items:center;background:var(--cream); }
-    .footer-copy { font-size:.68rem;font-weight:300;letter-spacing:.06em;color:var(--warm-grey); }
-    .footer-links { display:flex;gap:28px; }
-    .footer-links a { font-size:.68rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--warm-grey);text-decoration:none;transition:color .2s; }
-    .footer-links a:hover { color:var(--copper); }
-
-    .reveal { opacity:0;transform:translateY(22px);transition:opacity .7s,transform .7s; }
-    .reveal.visible { opacity:1;transform:translateY(0); }
-    .reveal-delay-1 { transition-delay:.12s; }
-    .reveal-delay-2 { transition-delay:.24s; }
-
-    @media (max-width:960px) {
-      nav{padding:22px 24px;} .nav-links{gap:20px;}
-      #hero{padding:0 24px 56px;} .hero-headline-ghost{display:none;} .hero-bottom{flex-direction:column;align-items:flex-start;}
-      #about{grid-template-columns:1fr;gap:32px;padding:64px 24px;}
-      #work-intro{grid-template-columns:1fr;gap:24px;padding:72px 24px 0;}
-      #projects{padding:0 24px 80px;}
-      .project-entry{grid-template-columns:1fr;gap:36px;padding:52px 0;}
-      .pv-col,.project-entry:nth-child(even) .pv-col{padding:0;order:0!important;}
-      .pt-col,.project-entry:nth-child(even) .pt-col{padding:0;order:0!important;}
-      .project-frame{aspect-ratio:16/9;}
-      #contact{padding:80px 24px;}
-      footer{flex-direction:column;gap:16px;padding:24px;}
-    }
-  </style>
+footer{padding:var(--s12) 0 var(--s16);border-top:1px solid var(--hairline);color:var(--ink-faint);font-size:13px;
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:var(--s4)}
+footer .brand{color:var(--ink);font-family:var(--font-display);font-weight:600}
+</style>
 </head>
 <body>
-  <div id="cursor-dot"></div>
-  <div id="cursor-ring"></div>
+<div class="aura"><span class="a"></span><span class="b"></span><span class="c"></span></div>
 
-  <nav id="navbar">
-    <a href="index.html" class="nav-logo">Léa Errog</a>
-    <ul class="nav-links">
-      <li><a href="index.html#about">About</a></li>
-      <li><a href="index.html#projects">Work</a></li>
-      <li><a href="index.html#contact">Contact</a></li>
-    </ul>
-  </nav>
+<nav class="nav">
+  <a class="brand" href="index.html"><img class="avatar-nav" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAQDAwMDAgQDAwMEBAQFBgoGBgUFBgwICQcKDgwPDg4MDQ0PERYTDxAVEQ0NExoTFRcYGRkZDxIbHRsYHRYYGRj/2wBDAQQEBAYFBgsGBgsYEA0QGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBj/wAARCACgAKADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD4iPL5PU1o2oP2K6wB/qv6iqBHIP8AKtG2XNpcSA/diJJJ+nFAGdKhV89z+laQKL4UG7G8zdOvGDWXJIWmLjcMnkVoMM+GAQrDMvXPHAoAzWJZuT27Vs3srQWUfXJUdvasdBnGK09VUliGOdvGB9KAMbcXnyxPPfrV+4UkZAyvY/Tis8IwkBHHPSuisrC61O4S1toGmJPOB0+vtQBzrfeOP0q/ZozWLBQc+YCB3r2nQvgba3mmC71nV4LQ91jw+PryKq3vhjwDo2pxxf24rBHC3CnoQB/DnuaAPG5IZPMZ5EcEnA4/WtDTo0Qu7N/yzCj8TX0LpWn/AA71Oz+z2+mWFwWH3Wf5mHtz1qh4m+CUN/Ym98H3IimIybC5OC2Oyt/jQB4NLCFtLmcHIGBkDtmui1nSz/wig1HZwdgV89QAKoajpl7pel6np2o2k1vexOiPDKu1kOf1HuK6nUpVj+FMHmJ+8VQM+vNAHmcjYmBHPy0hcRWcny53YH0pkrYkI59KSXnTs9Pnx+lABbndcw5GOgqcoS+5RkLyagtMfa4s9BVyxwdWSKQcOdp59aAK8r51mSUc4k3c/Wm3bFn3EHnmnyFFubkMBnccfnUcxJTnIxQBKDghd2fT2rUtR/od2pB5iJFZYBJ4zz6VsW3zWV2emITwe9AGOQS2DktWjISPD0SAZHmt7dh1rOb5p/l4GR36VevQYtKgTjBZuc+woAp2+DKEzz24rV1QbZSQcHPA71iwSFbhWBzWvelpr4qT97PJNAFKztPtE/muflU8k+tes/DvTH1K/XYuyBCcAkDJ9cV57DYzO8NnaK2MkkoMs2OuB9T1r2v4NaPcPrbWsdhcNcI3ypFtOw/7Q/xoA3fE+i+JJNOAtneC0jj3zPEPmk9h35rzKy/sa9vmttR0GxQKeZru62yMfUksOa+39N+HyXWiNHqzbpZR8204x3wcV418Qv2frqXVPtPh9RbSc7dkYIz6knP8qAPL4Phvpbx/atFaVdzfNE9x+7weytg4/EY969I8M6HqNhbLCb65MSggR3J3GI9sP6fp9KtaL4H8VeG9Oi/tKHWtQkRcb7aRePwYYrU0fxPYy6nLpkEM1pfqjNJpmowGGRwP4oxyG9flJ/CgCnr3hjw94u059O8UWo3lNq3kOBJCf4Tn+IZ/z3r52+Knh7UPB8Fvol2weNstDOmdkqg9R7+o7V9KXd7a6nZMYwBCQNrgYMLdCDj+HOOO1Yuv+G7Xxn4MuvCuuNtukXzbW5C5aCT+Ek+nY+o/CgD4plOZic0+Q/8AErx6yf0qzrem3ej6/d6ZfwGG5tpDFIh7EH+X+NVmGdPHXqT+lADbX/j5j4qWBil/G5ycMKZa/LcRnHbv9KcnN8uFP3hQBGZQL2YnncxA9uaWVgY8d8+lQEFrxgOpY/zqzcQtFGu7IB5oAsogMoI49fpW5ZKP7Ov0Cg4gPOenFY/lsG29c1oWbtHZXWUyGhZentQBjIw83J556Zq3qpAtrUDGNhP61m7/AJ8cjntVvUmPl2oIIIi7/WgCrBlrlBx1FbEzKuqu8pYIgydg/Ksi0P8ApqA+taOpsC2FOC5JYDrigD1X4VadDdWN/q7xrLJbwFIQ43ZYg4JHscV9N/CnRtJ8MabBZ2qgzv8ANPcN96V+pJP1r50+FMj2OiwwvGQbllZV7sM5P6V794baVdVVFZyece/NAH0BYvvgAD5U88VplI2wMA+/rXK6C0vlKrHJ+tdNFny8ZIINAFuC3tzJ/qU4rlviV8L9F8d+F2t2RbTVIT51hqMI2y2sw5DA9x2I7iuut4juGGOavCNthO7OO1AHxn4cvrqZr6PVYlhv7a4ez1CPbwkg4b5fRuv5U7VL6bT4oboABoD5T5bOQTjJ/Str4raa/hL4/wB3fGApp3iW2RZHxx9ojwAfqVP6VwN3qUmoWN3o8hVZ/LkjkBHO5On446fQUAeU/HvQ4ovFFp4otUIh1OBSxzn51GOf5fhXkcgK2Cc8Fj/SvbPEVwde+G9zYXADy2Z81WPbPB/UZrx2VN1pHuXGNxP6UAV7ZGa5Tg8Jn9Kfbx/6emVzyDirVqim8UYx+7H8qbHHt1FPlbr3oAzoBu1JR6vV3VAUcKcDj86q2IzqkRI/iq1q5P2sjBHtQBaIBAfnHvUlu5eC5CqOIm56Y4qsXJjwRzjGas2ADR3AJ48piOfagDEC5kH1q1qmFkgUdoV/rTFXMg4JpNRkDXCe0aj1oAitP+PxCTwDV93W4vJGkKgDgDHQGs23cLKGPbmt7wlZDVfGOn2jqGSS4UsD35/+tQB7zodhbaBrOgQ3c6qEsvNkzwAMDH4163p3iPwvFLDcvrEcTD+98o/XtXgfjXWI7b4gRXrqrxKhSMH7oCgYNYFx4wTVs3F/p8zW0TbTJaIu4Z6ZJoA+6fDvi/TLqBZLS+glGeSjA12EGtW8x3CQAdcivg/7Nq3hQ2moabNdfZLvc0DuNhfbw33SVYe4/Kvp34PXOp+LPDcd7MzgHKnI6EdaAPWLnxfpejQG41G/jhiA5JPWs+3+MXhC7lMNrdSztnHC9T7d68x+J8D6ZbPLLbSXbfdRMErn6V4xpGpapD4+/sGXwnb3Fw7xpHI808auztjarRDapXrz+tAH0Z8Xobbx78J9SigsXj1CyQ3ljO64xInzbc/7QBH418dy6+ZNcTVBIfm2SnPHbBz+dfVfhS88Qx2N9puoWd1FDFui2XTiXPUcN/EvocA+tfH5t/s2sTWl5AVBd0dSPujcVb8uDQBbjKrd6tDFta3njdB6DcNw/UGvJr9TBIY2I3KWBIHXmvSdNl8nW5NPnkXbLEVDepBGP8+9cB4gh8i5aNyA67hj8etAFeDK3nGP9Tn/AMdpsGTfAHBwCevtSQvmVSxziHA/KmRsPtQIyMA/yoArafj7bET/AHj/ACp+pMWvSSQeB0FJpoLXsf4/ypNRAF6R6evagC1KoVcflzU+nj95KQePKfj8DVaQ4XnORgVNbyIm/g8o2B+BoApMSclR26VVumLT8n+EVahIJIY9qqXXF0wHt/KgCNTzXa+DI306Y6my4mxtiJ4xnqf1rltOtvMmVmGRngetbQ1DZH8j7NvAbGSB7CgD2HT9KtPFZuomtxO9uPLUg8Ftoyc+mSfyrsvBngLUdCAtLnQYL21J4lMCu355FeYfB3XBb3XkOSAXzhjnP1r7A0DVIDp8W6RSCuQfQUAch4j0t59GtLOe1t4EhGI1Ma7o17gYGBXpvwOjS08NTxQ8qsrdeMV5d8RdWkJEVnIFeWQIJCeFXuc16V8FL/TJNBeKC9ikmOWkw3egDuPE3hZfEOnMLecwzA5HTB9jXJ6R4R1m1vFFzHErrwJlHzfmRmvQJr1raD7UuJIw2GUdcetTW+qW9ygZXBBoAis9BgttPKPGrF1+ZiMnNfDPxy8OR+F/ixqENsUIkP21V7lH+9j6EV96T3iJbk5HTkV8GftZ6zJa/GvTbi0Pzi1UEdnXJyDQB5LPOF1WCRGIAII9xWD42QrrTg88EgjvljV1rlJbmEx8AvkD07YqPxcyuzSkZBjyoP1xQBzdt/ryMZPk/wBKZEcXDHHRW/Dg0W/EznPSD+gpIiDJIT18tuPwoANJGLxSeysf5VDfHN21WNHH+lqB1KHr9agvlzev6g84oAnnI2BsnOelRJLvugo4XBH14pLiTEQXvVeE/wCkBqAJ4hgnJFVrnH2piealVxuIOKrTHMzZ9aANnR5YxazOwy8ag/0piKVnCsOCMc1mWlw9vdK68joynoR6V0hhhvNN+1W7ZC8uO6n0NAGt4Wjl0vUpAsnzIVkBHcH/ACa988OeMrmbSYYldiVGM5/OvAtBuYjqVt9oXK5ET/Q16p4eiWwv5NOdztSQ7H74IyDQB1/jSDUdY8JvHYSiS7IDJHnrg81l/Ca38V6ReS3t2bq3tDKIpj0YZ4HH171mS+JPEOm6w1rHp1rMhJAluLjy1b8MV6N4U8RePJLfyl8EeH722kO5mS8YsCOhoA+gPBmgXljNLe3utX11HMPkgncMqZ74AGK0r3TZLF2nsZd8ectH3HuK5PRvFfjma3WK+8H6MjMPlNvqLFj/AMBCmujhutaM6jUrGGDccFYZt+BjqSQKAATXdyvlOSB3J718T/tWTxJ8a4kADvDpsYAJ6MzMcn8BX3WscfllgQBivzk+Neux+K/j34h1GFxJaQ3H2aMjoUiGzP4kGgDldPgH2i2DZ3KgY57n/OKbr2HtE3feGcgHp3qTSMvceYRzncB24PT8hVTWztllQnoNx/H/APXQBjRDFzKD1EIH48VHC3MuecRt/KpFJEk7jP8AqlH8qihx5U5/6ZHmgCxo3+vc5Gdn9aglwJpOQTn8+afpfBl/3P61WmfNwSeKAEuDlyQc1HGcSZ9qlmwVyBUK/f6dvWgAU/NUTnLk+9SR48wZqNsGQ/WgAT7wOK29Kmmtr1ZYfm8yPJjzww6Mv1rMijxHuPBPar1g4jlXdx5Z3fUHgj8ufwoA2Rtj1DZDkLON0DE4wwP3T+or0LQ9civ7eGV3KXMY2OGPJx61wOp2xhngkckxStkMp4V+M/8AfQwaje8nsp/tkRJO7y5hnBJ7OPqP1FAHs6br+6EbkMW+6xGcivZfAHg+S4s4ZYRdxuchvKuCqE+4Jr5l8NeKpPMjzl1HfHI+tfRPgT4k2lt5EIwm77wJ6H1oA980fRbmwtkDxhG9V5z9TV67gZ4PnOAPTrWTYeONMmsBJLdIMgfMWFZOo+IbzV8xadH5UGcGZurf7o/qaAOO+NvxZtfAPgCWz0+4V9bv0NvZxqfmQkEGU+gUdPU4r4JDPO7KXZ8nlj39yfzNep/tD6iw+Lt5CkpdbeBEUk5wSp/qa8ys0C2gUA/MAuf1P8qANjTE8uOZxjCDPHOfasbVnZrjzG7oA2D/AJ7VsIfI0e6kI4dgigdT6mub1ByHkwSMAD9KAIVOROwzjYtRRkeVcEHH7o/zFSBhsuNn91ahQf6BcsB1UD9RQBZ0Xb++ZyAAAMmqdz/x8HaQR7VLpxP2aVQCcnsahl/1nQZoAJMlfamKPmP0r9BZ/wBlP4N6zo1v9n07UtKm2bwYbp1klHfKtnj+VYi/sh/CsyRWzX+ueY67yftwVsY4+Up3z9RQB8JoCGzxT4oxv3MMnsvrX3dH+x78M4XZmOvOiZBLXO8P2z8vI9elQXv7LHw8tsR2NpfMyLkma7Y7s+ikAn16/hQB8Og5JyQTjAp8JLNmNtso5HvXvPjL4Dy2eqiPw8ku0OyyQ3KEPGB/EGA5U+4ryTWPCt7pyNcG3mEasVJI24IJB6/SgDa0uOLXvCslluRZY1A+bgow+7/h9MVlR27zTmC4G1nG11x0/wAkUvhu4eC9EuXA27ZB13r/AIjsa7ttM0+/0wXkCb5IDlyOC6Hndjvg8/iaAOd0PRJTfqqlkG9EbjnlsGu68O+HdXm1Ga03kSW7lXDdcZ6j2rW8Nagltqtpew6LBcW1wy287KfmifPXB45r2N9H0q/tY9Y0SP7NfRfvPmXG9T1DD+JT60AR+DvDhtUja4YyuOcOcgfQV6dDbrHbZHGBWRosKSW8coUoW+8n90+lb13mLSZCo5IwKAPhz4qeGPEfiv4u+Jb/AESwmvjHdlHtY1+cKoABUd/wrzq03SXqwTRvH5ZKtGww27vkdjX1XNayab8f9asyr75IE1S3UHBZXXbKF9wUJ4/rVn4n/A6LxnbW3jLwXPaQX8w33Ty9LgYBydgwCMgbu4680AfMetlIrKC1jAUooZvTLVyl8x8+QfTI/CvZ9X+BXxShtVM/huW8dju32ciy7lz6A8V5drvhPxTpU07ap4d1W0VH2s81q4UHsCcYoAwwT5E2e+3+VMUj7BOCefl/nUjLhJVGM7gMd+lRhWFhL8vcc/jQBPpxVbaXOAScDiqsrbpCR0z3qW2z9mfHHzetVm+9zQB+uNlOY7eGK+sDA2xBlpg+08/LkkcAYOcc1tqrukpaCNwxHLNgBenB/DtXG+GNZ07xR4WtdVtzIltcANGbhcozdgOxA9+9dB9jEbCSKGa3Z3UlUnK8DoSucHGB+lAFuGGMRPE8aRsWGBA2B/vdaxvEdxb6b4dn1O6uHltww3RyjJVSQoOFBOATn+tatw08TBUZpJAGYNNCWXnIC5XFV9WsxqGiz298vk/uiPtEB3KGIxy2Nwx16YoA5yHQ0OtjUbcTXVo8RDbvmEJznDA4PP44xXk/jf4W6bqWhrbTW8kdwm5txwc7mLHIHbrz717To19PceHrOOWaeWXISVoNuFwMHI3dCR7/AEqp4j0s3WlSO8kUoKkZcgFQO4ZcY4yePpxQB+dep6BP4T8VXdjdIVEfzKuexPANdRokxWWG4tYWSMkkrvG31xj/AD+tdv8AFPwWsGuJdR3lzeWiyfZne5kDFWf5gAcZxnA5z1qK08LNZ6B9rtWWREmSRkUZLL6exIIx7gUALFGthL9qsyIbebnKgHY3rg9cHkD8K2fCfjjxFpniGWDW9OiudLt2H2s2oIaKNhxMnqh4OKfaw6ayR399CLvSJFEM7JwInxhJ/XBGAw7Fc13WheHYdPuk06fy2a+iexjujhiYSd2PTpnB9SfWgD1Gws0NktxAAY3VHDDvlev5Yq/d2xksYxj7zgH86t+H7AWenfYHj2RxfJGD2GBgfhWgbUi0xjJV9w+lAHzB8a7mfwx8avC/ie1G3yUFvKfVGbjPsCR+de0eCo30a8vLAKJtLuiLu1t84EUcnJ25PZt4/DiuS+M/gyTxLpF3dxx4+yQljkdQR/PIzWjpfijw3feH7I6ZrNnda/4fhSK/tEYGeCF9oclTjODg/iaAPRLjTbdpo0cSSWby4jZZGAyccED9M+ppTp0CJJ5zz+QHZzHBEHDZ7knO45HtWhFbpqMO+SxLo0ZZJFmDKMnJOBxngdM47U42UkF+FheQJgrIHG5JAR1z/C2R1oA4zW/hb4H8T2B/tbwdp175if66VI4y3PGXUBs47iuQ8Sfsz/CXWNMNjF4fs9LnEJMVxp1w4k4GASOj4689a9gbFk5kJV53JHky5IZO3IyB9R9KkEhvbZMJZwR7thjC7yCO2BwMfpQB+aXxR+D/AIm+FGrC21VRc6dcsTZ6jEpCTDrtYH7jgdVNeYsMNiv1d8XeD9I8b+C73wp4hhbUIL12CtKgV7d/4XGOeDyG/CvzN+I/gTV/hz8SNR8Kawg821f93KPuzxnlZB7Efkc0AfoP8HNTjl8NNotzFbQvCZVls4y2YyoyRg8E5HQexzXdaY093G2L66STIEZcg+4G0/Ln368VziaPaaNqeoXlhIIopIzLGfLzExKlic59O9a/gmMyaBbyR3kxMmDz+8GOp7+vfrQBrNcagb2OBJ4pEdj5geNl+VR3IPXPcflWjFNJ9jLTWjwCROJICXXleRnqB25HOaydTF7aJPLKsbwpGwBb5WyT6n0q5puo3MrbVks5cMqBiWX8D1z04NAHKaBK9p4z1vSrUxR2skiXcBt2VVbcMNHwODkZPpXSmwjeyaWbypI58EIECqnHIJ/i5/OuV8dW0GjeKNF8YRadFFDbvJa3qLIq7kkwN2RjJDYb866+0XSIbZJbiOMSuoAUMWdwMsuBzz3wKAPNPiD4Qn1/wjdQ2catLPnymkjPBUjpg8ndnH4mvEdPub2zVQ0SC5i3I9u/CTIT80f1VvmB9G9q+rL+PULpZrVWltrVs4dQrNyM8DPGM8H1zxXjXjX4ZPbbtW0mKQyZEs0yAGVXA4kI4B46gDBGaAPK0u08G6kdchi+2eF9RlKXcEw3fZJG4ZZF6qM9+neuh/t+K0t4ptNmWfT7eaOa1G7LWxByYie6EZwenNcRr+pzebNZz2qpcrlJUjHTPB/3kI5wQcdK890fUbq01SXRw4WC4YIEVj+7+Yfdz0Ht2oA/RPTiRp6TWhEyPhghPIyAeD/Q1Mt5bPOYYn3TjGYTwwz61zXw51GTVfhfo1+G3XBgVJl/56FCUJHv8ua6+YQW8T6nsLKqZkKfxIOefpQBVutMhnsbq1uQJBOrCT3BGMV4f4j+GVxc3093Z28dr4q0zT3utL163XZ9sjUBRBdDoxwdhz94H1Fe9SOhtnmjbKMhKt0zkcGvM/jZouuXvgcX/hrVbiw1WyXdE8LkFxxlSO4PpQAvwg1+fXvBg0/W7bULXWIG8q7hWWTdCe21gcBTwRjqMV6pCJFiMZeSZOVZLhdrj3U9GHPfvXyB8IPH3iTUbrUbjxGZduitE13MMRsFeQR7XYDkAsGB64BFfXFq8TwiaC9doyFLRPIXUgqCOG5H1FADbl7ZImijnFvIAXaKUGMsBwfbp6egqLT4W8xfJ2o7DLqgxlh6A9zV0TzRysl0u5CN/wB0sqjoctjj/Cqf2eKZGhaeR1Z8OUk25Qj1HJHTjPHc0ASXMmmo4jkuZTKx4jtiXYk5xkL05B5PFfFX7a+kk+MfDmvratAZbJ7WVGTDIyvuXcRkDIY45zX2sDa24W2tokhRUGPLUHzAM8HGc+vrWJ4p8KaN4y0i60nxNpUd1Z3ULxlZSp7YDKcfKRjIPXNAH//Z" alt="Léa Errog">Léa Errog</a>
+  <a class="link" href="#work">Work</a>
+  <a class="link" href="#before">Before RetinAI</a>
+  <a class="cta" href="#contact">Get in touch</a>
+</nav>
 
-  <!-- HERO -->
-  <section id="hero">
-    <div class="hero-eyebrow">
-      <span class="hero-eyebrow-line"></span>
-      Marketing Lead · Deeptech &amp; MedTech · Zürich
-    </div>
-    <h1 class="hero-headline">
-      <span class="hero-headline-inner">
-        Deep tech deserves<br>
-        marketing that makes<br>
-        people <em>act.</em>
-      </span>
-    </h1>
-    <div class="hero-bottom">
-      <div class="hero-bio">
-        <p>I'm <span style="color:var(--copper);font-weight:400;">Léa Errog</span> — I turn complex AI and MedTech products into stories so clear and compelling that people immediately understand them, want them, and convert. My superpowers are data and simplicity. My tools are neuromarketing, SEO, and AI-native content strategy.</p>
-        <a href="index.html#projects" class="scroll-hint" style="text-decoration:none;"><div class="scroll-line"></div>Selected work</a>
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-top">
+  <div class="hero-bg"></div>
+  <div class="wrap">
+    <div class="hero-panel reveal">
+      <span class="eyebrow mk">Senior Brand Marketing Manager · Deeptech &amp; Health Tech</span>
+      <h1>I build marketing functions that close the loop — from first touch to <span class="accent">closed revenue.</span></h1>
+      <p class="lede">I'm Léa Errog. I turn complex AI and health-tech products into demand you can measure. Over three years at RetinAI — through to its acquisition by EssilorLuxottica — I built the marketing function from the ground up.</p>
+      <div class="who">
+        <div>Currently<b>RetinAI, acquired<br>by EssilorLuxottica</b></div>
+        <div>Scope<b>Marketing strategy<br>reporting to CEO &amp; VP</b></div>
+        <div>Based<b>Zürich<br>Switzerland</b></div>
       </div>
-      <div class="hero-meta">
-        <p class="hero-meta-role">Marketing Lead</p>
-        <p class="hero-meta-item">Currently · <strong>RetinAI → EssilorLuxottica</strong></p>
-        <p class="hero-meta-item">Based · <strong>Zürich, Switzerland</strong></p>
-      </div>
-    </div>
-  </section>
-
-  <!-- MARQUEE -->
-  <div class="marquee-strip" aria-hidden="true">
-    <div class="marquee-track">
-      <span class="marquee-item">Simplicity as a superpower <span class="marquee-dot">◆</span></span>
-      <span class="marquee-item">Data-driven creative <span class="marquee-dot">◆</span></span>
-      <span class="marquee-item">Neuromarketing principles <span class="marquee-dot">◆</span></span>
-      <span class="marquee-item">SEO · AEO · GEO <span class="marquee-dot">◆</span></span>
-      <span class="marquee-item">Go-to-market strategy <span class="marquee-dot">◆</span></span>
-      <span class="marquee-item">AI-native content <span class="marquee-dot">◆</span></span>
-      <span class="marquee-item">ROI-obsessed <span class="marquee-dot">◆</span></span>
-      <span class="marquee-item">MedTech · AI · Deeptech <span class="marquee-dot">◆</span></span>
-      <span class="marquee-item">Simplicity as a superpower <span class="marquee-dot">◆</span></span>
-      <span class="marquee-item">Data-driven creative <span class="marquee-dot">◆</span></span>
-      <span class="marquee-item">Neuromarketing principles <span class="marquee-dot">◆</span></span>
-      <span class="marquee-item">SEO · AEO · GEO <span class="marquee-dot">◆</span></span>
-      <span class="marquee-item">Go-to-market strategy <span class="marquee-dot">◆</span></span>
-      <span class="marquee-item">AI-native content <span class="marquee-dot">◆</span></span>
-      <span class="marquee-item">ROI-obsessed <span class="marquee-dot">◆</span></span>
-      <span class="marquee-item">MedTech · AI · Deeptech <span class="marquee-dot">◆</span></span>
     </div>
   </div>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <div style="padding-top:4px;">
-      <div class="section-eyebrow reveal">
-        <span class="section-number">01</span>
-        <div class="section-rule"></div>
-        <span class="section-label">Approach</span>
-      </div>
-    </div>
-    <div class="about-text reveal reveal-delay-1">
-      I specialise in making the deeply technical immediately desirable. At the intersection of data science and human psychology, I build marketing systems that are measurably ROI-positive and anchored in neuromarketing principles that reduce friction to conversion.
-      <br><br>
-      This is my philosophy wherever I work. At RetinAI, a Swiss AI startup building diagnostic tools for ophthalmology, I applied it from day one — rebuilding the demand generation engine, repositioning the brand, and building a content ecosystem that earned real authority. In two years, digital marketing-sourced pipeline grew from 235,600 CHF to 6,685,258 CHF. The company was acquired by EssilorLuxottica in October 2025.
-    </div>
-    <div class="about-superpowers reveal reveal-delay-2">
-      <div class="superpower-item">
-        <div class="superpower-icon"></div>
-        <div><span class="superpower-name">Radical simplicity</span><span class="superpower-desc">I take products that require a PhD to explain and make them obvious in 10 seconds</span></div>
-      </div>
-      <div class="superpower-item">
-        <div class="superpower-icon"></div>
-        <div><span class="superpower-name">Data conviction</span><span class="superpower-desc">Every creative choice is backed by a metric; every metric has a story behind it</span></div>
-      </div>
-      <div class="superpower-item">
-        <div class="superpower-icon"></div>
-        <div><span class="superpower-name">AI-native thinking</span><span class="superpower-desc">SEO, AEO, and GEO built into every content decision — not bolted on after</span></div>
+  <!-- HEADLINE STATS -->
+  <section class="headline-strip">
+    <div class="wrap">
+      <div class="hs-grid">
+        <div class="hs"><div class="n">×19.5</div><div class="c">marketing-sourced pipeline value<br>in 2 years (2023 → 2025)</div></div>
+        <div class="hs"><div class="n">0→70<span class="u">%</span></div><div class="c">of closed-won revenue is now<br>marketing-touched (H1 2026)</div></div>
+        <div class="hs"><div class="n">4.5<span class="u">M</span></div><div class="c">CHF marketing-sourced<br>pipeline in 2025</div></div>
       </div>
     </div>
   </section>
+  </div>
 
-  <!-- WORK INTRO -->
-  <section id="work-intro">
-    <div>
-      <div class="section-eyebrow reveal" style="margin-bottom:24px;">
-        <span class="section-number">02</span>
-        <div class="section-rule"></div>
-        <span class="section-label">Selected Work</span>
-      </div>
-      <h2 class="work-heading reveal reveal-delay-1">A fraction<br>of what<br><em>I've built</em></h2>
-    </div>
-    <p class="work-subtext reveal reveal-delay-2">Each of these projects started with a hard question: how do you make a product that barely existed yet, in a market that didn't know it needed it, feel like an obvious must-have?<br><br>The answer is always the same: obsessive clarity and relentless testing.</p>
-  </section>
+  <div class="hero-scroll">Selected work<span class="dot"></span></div>
+</header>
 
-  <!-- PROJECTS -->
-  <section id="projects">
-
-    <!-- 01 Pipeline -->
-    <a href="project-pipeline.html" class="project-entry reveal">
-      <div class="pv-col">
-        <div class="project-frame">
-          <div class="vf-pipeline">
-            <div class="vf-joined">I joined<br>Feb. 2023 →</div>
-            <div class="vf-label">Digital marketing sourced pipeline value (CHF)</div>
-            <div class="vf-bars">
-              <div class="vf-col">
-                <div class="vf-bar-wrap"><div class="vf-bar" style="height:3.5%;background:rgba(181,86,44,.18);"></div></div>
-                <div class="vf-val">235K</div>
-                <div class="vf-yr">2022</div>
-              </div>
-              <div class="vf-col">
-                <div class="vf-bar-wrap"><div class="vf-bar" style="height:13.6%;background:rgba(181,86,44,.35);"></div></div>
-                <div class="vf-val">912K</div>
-                <div class="vf-yr">2023</div>
-              </div>
-              <div class="vf-col">
-                <div class="vf-bar-wrap"><div class="vf-bar" style="height:31.4%;background:rgba(181,86,44,.6);"></div></div>
-                <div class="vf-val">2.1M</div>
-                <div class="vf-yr">2024</div>
-              </div>
-              <div class="vf-col">
-                <div class="vf-bar-wrap"><div class="vf-bar" style="height:100%;background:var(--copper);"></div></div>
-                <div class="vf-val">6.7M</div>
-                <div class="vf-yr">2025</div>
-              </div>
-            </div>
-          </div>
-        </div>
+<!-- WORK / FOLDER SLIDER -->
+<section class="work" id="work">
+  <div class="wrap">
+    <div class="work-head reveal">
+      <div>
+        <div class="eyebrow mk">Selected work at RetinAI</div>
+        <h2>What I solve for teams<br>building the hard stuff.</h2>
       </div>
-      <div class="pt-col">
-        <div class="proj-meta">
-          <span class="proj-cat">Pipeline &amp; Demand Generation</span>
-          <div class="proj-dot"></div>
-          <span class="proj-year">2023 – 2025</span>
+      <div>
+        <p>Five problems I&rsquo;ve been handed &mdash; and how I solved them. Open a folder for the approach, the system, and the proof.</p>
+        <div class="slider-ctrl" style="margin-top:16px">
+          <button class="sc-btn" id="prevBtn" aria-label="Previous case studies">‹</button>
+          <button class="sc-btn" id="nextBtn" aria-label="Next case studies">›</button>
+          <div class="slider-progress"><div class="bar" id="sliderBar"></div></div>
         </div>
-        <h3 class="proj-title"><span class="proj-title-text">From 235K to <span style="color:var(--copper)">6.7M CHF</span> in pipeline value</span></h3>
-        <p class="proj-desc">When I joined RetinAI in February 2023, digital marketing-sourced pipeline stood at 235,600 CHF for the full prior year. By 2025, that number had grown to 6,685,258 CHF. A 28x increase in three years, built on a consistent system of funnel clarity, content authority, and deep understanding of how MedTech buyers actually make decisions.</p>
-        <div class="proj-impact">
-          <div class="pil-col"><span class="pil-text">Impact</span></div>
-          <div class="pim">
-            <div class="pim-row"><span class="pim-val">28×</span><span class="pim-dot"></span>pipeline value growth over 3 years (235K to 6.7M CHF)</div>
-            <div class="pim-row"><span class="pim-val">1,297</span><span class="pim-dot"></span>total digital conversions in 2025 vs. 36 in 2022</div>
-            <div class="pim-row"><span class="pim-val">557</span><span class="pim-dot"></span>new digital marketing sourced leads in 2025</div>
-          </div>
-        </div>
-        <div class="proj-bottom">
-          <div class="proj-tags">
-            <span class="proj-tag">Demand Generation</span>
-            <span class="proj-tag">Pipeline Growth</span>
-            <span class="proj-tag">MedTech B2B</span>
-          </div>
-          <span class="proj-cta">View project <span class="cta-arr"></span></span>
-        </div>
-      </div>
-    </a>
-
-    <!-- 02 Discovery Launch -->
-    <a href="project-launch.html" class="project-entry reveal">
-      <div class="pv-col">
-        <div class="project-frame">
-          <div class="vf-launch">
-            <div class="vfl-ghost">02</div>
-            <div class="vfl-label">Go-to-market · 2022 – 2023</div>
-            <div class="vfl-title">RetinAI Discovery<br>for Clinics<br>Market Launch</div>
-            <div class="vfl-grid">
-              <div class="vfl-block">
-                <div class="vfl-val">+180%</div>
-                <div class="vfl-lbl">Demo requests</div>
-              </div>
-              <div class="vfl-block">
-                <div class="vfl-val">8</div>
-                <div class="vfl-lbl">Conferences</div>
-              </div>
-              <div class="vfl-block">
-                <div class="vfl-val">CE ✓</div>
-                <div class="vfl-lbl">Marked</div>
-              </div>
-              <div class="vfl-block">
-                <div class="vfl-val">3</div>
-                <div class="vfl-lbl">Audiences</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="pt-col">
-        <div class="proj-meta">
-          <span class="proj-cat">Go-To-Market</span>
-          <div class="proj-dot"></div>
-          <span class="proj-year">2022 – 2023</span>
-        </div>
-        <h3 class="proj-title"><span class="proj-title-text">RetinAI Discovery® — Clinical Market Launch</span></h3>
-        <p class="proj-desc">Launching a CE-marked and FDA-cleared AI diagnostic platform into a conservative medical market — retina specialists who trust evidence over marketing. The challenge: make a complex clinical product immediately desirable to three very different audiences, simultaneously.</p>
-        <div class="proj-impact">
-          <div class="pil-col"><span class="pil-text">Impact</span></div>
-          <div class="pim">
-            <div class="pim-row"><span class="pim-val">+180%</span><span class="pim-dot"></span>growth in qualified demo requests year-on-year</div>
-            <div class="pim-row"><span class="pim-val">8</span><span class="pim-dot"></span>major international conferences activated</div>
-            <div class="pim-row"><span class="pim-val">CE+FDA</span><span class="pim-dot"></span>dual regulatory clearance used as the core credibility anchor</div>
-          </div>
-        </div>
-        <div class="proj-bottom">
-          <div class="proj-tags">
-            <span class="proj-tag">GTM Strategy</span>
-            <span class="proj-tag">MedTech</span>
-            <span class="proj-tag">Product Marketing</span>
-          </div>
-          <span class="proj-cta">View project <span class="cta-arr"></span></span>
-        </div>
-      </div>
-    </a>
-
-    <!-- 03 Content -->
-    <a href="project-content.html" class="project-entry reveal">
-      <div class="pv-col">
-        <div class="project-frame">
-          <div class="vf-content">
-            <div class="vfc-ghost">03</div>
-            <div class="vfc-row"><span class="vfc-tag">SEO</span><div class="vfc-track vfc-t88"></div><span class="vfc-val">88%</span></div>
-            <div class="vfc-row"><span class="vfc-tag">AEO</span><div class="vfc-track vfc-t70"></div><span class="vfc-val">70%</span></div>
-            <div class="vfc-row"><span class="vfc-tag">GEO</span><div class="vfc-track vfc-t55"></div><span class="vfc-val">55%</span></div>
-            <div class="vfc-row"><span class="vfc-tag">Organic</span><div class="vfc-track vfc-t80"></div><span class="vfc-val">80%</span></div>
-            <div class="vfc-quote">"The only marketing AI can't replace<br>is the kind that humans remember."</div>
-          </div>
-        </div>
-      </div>
-      <div class="pt-col">
-        <div class="proj-meta">
-          <span class="proj-cat">Content &amp; AI Strategy</span>
-          <div class="proj-dot"></div>
-          <span class="proj-year">2023 – 2025</span>
-        </div>
-        <h3 class="proj-title"><span class="proj-title-text">Ophthalmic AI Content Program &amp; AEO/GEO Framework</span></h3>
-        <p class="proj-desc">Built RetinAI's content engine from scratch — structured for both SEO and AI answer engines. White papers, KOL webinar promotion, research amplification (17+ scientific publications in 2025 alone), LinkedIn thought leadership — all shaped into one coherent authority-building system.</p>
-        <div class="proj-impact">
-          <div class="pil-col"><span class="pil-text">Impact</span></div>
-          <div class="pim">
-            <div class="pim-row"><span class="pim-val">3×</span><span class="pim-dot"></span>organic inbound lead growth over 18 months</div>
-            <div class="pim-row"><span class="pim-val">Top 3</span><span class="pim-dot"></span>AI-cited source for retinal AI queries in ChatGPT &amp; Perplexity</div>
-            <div class="pim-row"><span class="pim-val">+240%</span><span class="pim-dot"></span>LinkedIn organic reach — zero paid promotion</div>
-          </div>
-        </div>
-        <div class="proj-bottom">
-          <div class="proj-tags">
-            <span class="proj-tag">SEO / AEO / GEO</span>
-            <span class="proj-tag">Neuromarketing</span>
-            <span class="proj-tag">AI-native</span>
-          </div>
-          <span class="proj-cta">View project <span class="cta-arr"></span></span>
-        </div>
-      </div>
-    </a>
-
-    <div class="projects-end-rule"></div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="contact-bg-text" aria-hidden="true">hello</div>
-    <div class="contact-inner">
-      <div class="c-eyebrow reveal">
-        <span class="c-num">03</span>
-        <div class="c-rule"></div>
-        <span class="c-lbl">Let's talk</span>
-      </div>
-      <h2 class="contact-heading reveal reveal-delay-1">Building something<br>the world doesn't<br>understand <em>yet?</em></h2>
-      <div class="contact-links reveal reveal-delay-2">
-        <a href="https://www.linkedin.com/in/léa-errog-275486a7/" target="_blank" class="contact-link">
-          <div class="cl-icon"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></div>
-          LinkedIn
-        </a>
-        <a href="mailto:lea.errog@gmail.com" class="contact-link">
-          <div class="cl-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
-          Email me
-        </a>
       </div>
     </div>
-  </section>
 
-  <footer>
-    <p class="footer-copy">© 2025 Léa Errog · All rights reserved</p>
-    <div class="footer-links">
-      <a href="index.html#about">Approach</a>
-      <a href="index.html#projects">Work</a>
-      <a href="index.html#contact">Contact</a>
-      <a href="https://www.linkedin.com/in/léa-errog-275486a7/" target="_blank">LinkedIn</a>
+    <div class="slider-shell">
+    <div class="folders" id="folders">
+
+      <a class="folder reveal f-photon" href="case-01-attribution.html">
+        <div class="tab">Analytics</div>
+        <div class="body"><span class="arrow-corner">↗</span>
+          <div class="num">01</div>
+          <h3>&ldquo;There was no marketing function here.&rdquo;</h3>
+          <div class="desc">I built the function from zero — the campaigns, the pipeline, and the analytics layer that proved which parts of it drove revenue.</div>
+          <div class="foot">
+            <div class="headline-stat">0→70<span class="u">%</span><span class="cap">revenue marketing-touched</span></div>
+            <span class="go" aria-hidden="true">→</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="folder reveal f-teal" href="case-02-demand.html">
+        <div class="tab">Demand gen</div>
+        <div class="body"><span class="arrow-corner">↗</span>
+          <div class="num">02</div>
+          <h3>&ldquo;Our pipeline is too thin to hit target.&rdquo;</h3>
+          <div class="desc">I rebuild the demand engine end to end &mdash; funnel, website, lead capture &mdash; until pipeline compounds instead of trickling.</div>
+          <div class="foot">
+            <div class="headline-stat">×19.5<span class="cap">pipeline value growth</span></div>
+            <span class="go" aria-hidden="true">→</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="folder reveal f-coral" href="case-03-content-ai.html">
+        <div class="tab">Content · AI</div>
+        <div class="body"><span class="arrow-corner">↗</span>
+          <div class="num">03</div>
+          <h3>&ldquo;Nobody understands what we actually do.&rdquo;</h3>
+          <div class="desc">I turn complex tech into a clear story, and build the AI-native content system that scales it &mdash; without a bigger team.</div>
+          <div class="foot">
+            <div class="headline-stat">3<span class="u">×</span><span class="cap">faster production</span></div>
+            <span class="go" aria-hidden="true">→</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="folder reveal f-prisme" href="case-04-events-pr.html">
+        <div class="tab">Events · PR</div>
+        <div class="body"><span class="arrow-corner">↗</span>
+          <div class="num">04</div>
+          <h3>&ldquo;Our events cost a fortune. What's the ROI?&rdquo;</h3>
+          <div class="desc">I turn conferences into pipeline and earned media &mdash; then build the team that runs them without me.</div>
+          <div class="foot">
+            <div class="headline-stat">15<span class="u">+</span><span class="cap">events led</span></div>
+            <span class="go" aria-hidden="true">→</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="folder reveal f-aurora" href="case-05-revops.html">
+        <div class="tab">RevOps · GTM</div>
+        <div class="body"><span class="arrow-corner">↗</span>
+          <div class="num">05</div>
+          <h3>&ldquo;Sales and marketing don&rsquo;t agree on anything.&rdquo;</h3>
+          <div class="desc">I build the operational backbone &mdash; lifecycle stages, automated workflows, one shared funnel &mdash; so both teams work off the same truth.</div>
+          <div class="foot">
+            <div class="headline-stat">3<span class="cap">launches shipped</span></div>
+            <span class="go" aria-hidden="true">→</span>
+          </div>
+        </div>
+      </a>
+
     </div>
-  </footer>
+    </div>
+  </div>
+</section>
 
-    <script>
-    const dot=document.getElementById('cursor-dot'),ring=document.getElementById('cursor-ring');
-    let rx=0,ry=0,dx=0,dy=0;
-    document.addEventListener('mousemove',e=>{dx=e.clientX;dy=e.clientY;dot.style.left=dx+'px';dot.style.top=dy+'px';});
-    document.querySelectorAll('a,button').forEach(el=>{
-      el.addEventListener('mouseenter',()=>ring.classList.add('cursor-grow'));
-      el.addEventListener('mouseleave',()=>ring.classList.remove('cursor-grow'));
-    });
-    (function loop(){rx+=(dx-rx)*.12;ry+=(dy-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop);})();
+<!-- BEFORE RETINAI -->
+<section class="before" id="before">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyelabel">— Before RetinAI —</div>
+      <h2>The same instinct, earlier.</h2>
+      <p class="intro">Roles where I turned marketing into measurable outcomes — proof the method didn't start at RetinAI.</p>
+    </div>
+    <div class="before-grid">
+      <div class="mini glass reveal">
+        <div class="role">Experis · ManpowerGroup</div>
+        <h4>Location-based recruitment campaigns &amp; HackZurich</h4>
+        <p>Ran the location-targeted campaign that broke through, and managed Experis' presence at Europe's largest hackathon — plus a LinkedIn workshop training recruiters to become lead magnets.</p>
+        <div class="stats">
+          <div class="s">130K+<span>campaign views</span></div>
+          <div class="s">200<span>applications</span></div>
+          <div class="s">11<span>B2B leads</span></div>
+        </div>
+      </div>
+      <div class="mini glass reveal">
+        <div class="role">CARAQA</div>
+        <h4>Brand guidelines &amp; digital campaigns</h4>
+        <p>Crafted brand guidelines still in use today, and filled a training program's registration months ahead of schedule through targeted digital campaigns leveraging them.</p>
+        <div class="stats">
+          <div class="s">Still<span>in use today</span></div>
+          <div class="s">Ahead<span>of schedule</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    // Nav: hide on scroll down, show on scroll up
-    const nav=document.getElementById('navbar');
-    let lastY=0;
-    window.addEventListener('scroll',()=>{
-      const y=window.scrollY;
-      nav.classList.toggle('scrolled',y>60);
-      if(y>120){
-        nav.classList.toggle('nav-hidden',y>lastY);
-      } else {
-        nav.classList.remove('nav-hidden');
-      }
-      lastY=y;
-    });
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="contact-card glass reveal">
+      <h2>Building something the<br>market doesn't understand yet?</h2>
+      <p>That's exactly the problem I like to solve.</p>
+      <div class="contact-actions">
+        <a class="btn btn-primary" href="mailto:lea.errog@gmail.com">Email me</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/l%C3%A9a-errog-275486a7/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-    // Reveal on scroll
-    const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');io.unobserve(x.target);}});},{threshold:.08});
-    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-  </script>
+<footer class="wrap">
+  <div class="brand">Léa Errog</div>
+  <div>Senior Brand Marketing Manager · Deeptech &amp; Health Tech · Zürich</div>
+</footer>
+
+<script>
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(Math.min(i,6)*60)+'ms';io.observe(el)});
+
+// ---- hide-on-scroll-down nav ----
+const nav=document.querySelector('.nav');
+let lastY=window.scrollY;
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  if(y>lastY&&y>120){nav.classList.add('nav-hidden');}
+  else{nav.classList.remove('nav-hidden');}
+  lastY=y;
+},{passive:true});
+
+// ---- folder slider ----
+const track=document.getElementById('folders');
+const prevBtn=document.getElementById('prevBtn');
+const nextBtn=document.getElementById('nextBtn');
+const bar=document.getElementById('sliderBar');
+const folders=[...track.querySelectorAll('.folder')];
+const reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+const step=()=>{const f=track.querySelector('.folder');return f?f.offsetWidth+44:374};
+
+function updateSlider(){
+  const max=track.scrollWidth-track.clientWidth;
+  const pct=max>0?track.scrollLeft/max:0;
+  const visible=track.clientWidth/track.scrollWidth;
+  bar.style.width=Math.max(visible*100,14)+'%';
+  bar.style.marginLeft=(pct*(100-Math.max(visible*100,14)))+'%';
+  prevBtn.disabled=track.scrollLeft<8;
+  nextBtn.disabled=track.scrollLeft>max-8;
+}
+prevBtn.addEventListener('click',()=>track.scrollBy({left:-step(),behavior:'smooth'}));
+nextBtn.addEventListener('click',()=>track.scrollBy({left:step(),behavior:'smooth'}));
+track.addEventListener('scroll',()=>{updateSlider();applyTilt();},{passive:true});
+
+// horizontal wheel — smooth, releases to page scroll at the edges
+let wheelTarget=null,wheelRAF=null;
+track.addEventListener('wheel',(e)=>{
+  const d=Math.abs(e.deltaY)>Math.abs(e.deltaX)?e.deltaY:e.deltaX;
+  const max=track.scrollWidth-track.clientWidth;
+  const atStart=track.scrollLeft<=0&&d<0;
+  const atEnd=track.scrollLeft>=max-1&&d>0;
+  if(atStart||atEnd)return;
+  e.preventDefault();
+  wheelTarget=(wheelTarget===null?track.scrollLeft:wheelTarget)+d*1.1;
+  wheelTarget=Math.max(0,Math.min(max,wheelTarget));
+  if(!wheelRAF){
+    const tick=()=>{
+      const cur=track.scrollLeft;
+      const next=cur+(wheelTarget-cur)*0.18;
+      if(Math.abs(wheelTarget-next)<0.5){track.scrollLeft=wheelTarget;wheelTarget=null;wheelRAF=null;applyTilt();updateSlider();return;}
+      track.scrollLeft=next;applyTilt();updateSlider();
+      wheelRAF=requestAnimationFrame(tick);
+    };
+    wheelRAF=requestAnimationFrame(tick);
+  }
+},{passive:false});
+
+// per-tile 3D tilt based on distance from viewport center
+function applyTilt(){
+  if(reduce)return;
+  const cx=track.getBoundingClientRect().left+track.clientWidth/2;
+  folders.forEach(f=>{
+    const r=f.getBoundingClientRect();
+    const fc=r.left+r.width/2;
+    const d=(fc-cx)/track.clientWidth; // -0.5..0.5 roughly
+    const ry=Math.max(-22,Math.min(22,-d*38));
+    const tz=-Math.abs(d)*90;
+    f.style.setProperty('--ry',ry.toFixed(1)+'deg');
+    f.style.setProperty('--tz',tz.toFixed(0)+'px');
+  });
+}
+
+// drag to scroll
+let down=false,startX=0,startL=0,moved=0;
+track.addEventListener('pointerdown',(e)=>{down=true;moved=0;startX=e.clientX;startL=track.scrollLeft;track.classList.add('dragging');track.setPointerCapture(e.pointerId);});
+track.addEventListener('pointermove',(e)=>{if(!down)return;const dx=e.clientX-startX;moved+=Math.abs(dx);track.scrollLeft=startL-dx;applyTilt();});
+const endDrag=()=>{down=false;track.classList.remove('dragging');};
+track.addEventListener('pointerup',endDrag);
+track.addEventListener('pointercancel',endDrag);
+folders.forEach(f=>f.addEventListener('click',(e)=>{if(moved>8)e.preventDefault();}));
+
+updateSlider();applyTilt();
+window.addEventListener('resize',()=>{updateSlider();applyTilt();});
+</script>
 </body>
 </html>
